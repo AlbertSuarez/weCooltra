@@ -1,0 +1,35 @@
+version: '3.5'
+services:
+
+  api_app:
+    image: wecooltra_api_app
+    container_name: wecooltra_api_app
+    env_file:
+      - api/.env
+    build:
+      context: api
+      dockerfile: Dockerfile
+    networks:
+      - wecooltra
+    ports:
+      - 9081:9081
+      - 3081:3081
+    restart: always
+    depends_on:
+      - wecooltra_api_nginx
+  api_nginx:
+    image: wecooltra_api_nginx
+    container_name: wecooltra_api_nginx
+    build:
+      context: api
+      dockerfile: Dockerfile.nginx
+    networks:
+      - wecooltra
+    ports:
+      - 8081:8081
+    restart: always
+
+networks:
+  wecooltra:
+    name: wecooltra
+    driver: bridge
