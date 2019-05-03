@@ -3,6 +3,7 @@ import logo from '../../logo.svg';
 import '../../style/style.css';
 import { IWeCooltraProps } from './IWeCooltraProps';
 import { IWeCooltraState } from './IWeCooltraState';
+import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -26,6 +27,7 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
           >
             Learn React
           </a>
+          <NavigationDrawer/>
         </header>
       </div>
     );
