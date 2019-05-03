@@ -25,7 +25,8 @@ To run the server, please execute the following from the root directory:
 This file must have this structure (without the brackets):
 
     ```bash
-    TODO
+    DB_PASSWORD={TO_FILL}
+    DB_HOST={TO_FILL}
     ```
 
 4. Run API server as a python module
