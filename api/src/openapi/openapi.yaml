@@ -1,0 +1,59 @@
+openapi: '3.0.0'
+
+info:
+  description: 🛵 Gamification app built in eCooltra hackathon
+  version: '1.0'
+  title: weCooltra API
+
+servers:
+  - url: http://localhost:8081
+    description: Localhost endpoint.
+
+tags:
+  - name: user
+    description: endpoint for managing user options.
+
+paths:
+  /user:
+    get:
+      tags:
+        - user
+      summary: Retrieve user Information
+      description: Invoke this endpoint to retrieve information of a given user.
+      operationId: src.api.user.get
+      parameters:
+        - name: user_id
+          in: query
+          description: Specifies the user to retrieve.
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          description: Whether or not the request was successfully processed or not.
+        message:
+          type: string
+          description: Error message if the request was unsuccessful.
+        response:
+          type: object
+          description: Contains the response data if the request was successful.
