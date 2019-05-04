@@ -1,4 +1,5 @@
+import { IEstadisticaModel } from "../../models/IEstadisticaModel";
+
 export interface IMisEstadisticasState {
-    // navigationDrawerOpen: boolean;
-    demo: string;
+    estadistica?: IEstadisticaModel;
 }
