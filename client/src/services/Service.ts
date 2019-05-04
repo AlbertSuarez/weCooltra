@@ -106,8 +106,41 @@ export default class Service implements IService {
     }
 
     public createRelationship(my_user_id:number, your_user_id:number):Promise<string>{
-        return new Promise<string>((resolve,response)=>{
-            
+
+        console.log("data",my_user_id,your_user_id);
+        return new Promise<string>((resolve,reject)=>{
+
+            let body = {
+                "user_one": my_user_id,
+                "user_two": your_user_id
+            };
+
+            let jsonBody = JSON.stringify(body);
+
+            console.log("JSON BODY", jsonBody);
+            fetch("http://api.wecooltra.ga/friend",{
+                method: 'POST',
+                body:jsonBody,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    console.log(data);
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else {
+                        resolve(data.response);
+                    }
+                });
+            })
+            .catch(error=>{
+                reject(error);
+            })
         })
     }
 }

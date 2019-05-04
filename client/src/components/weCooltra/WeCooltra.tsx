@@ -57,7 +57,7 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Lista de Amigos" && this.state.user ? <FriendsList 
                                                                               changePage={this.changePage.bind(this)} 
                                                                               user_id={this.state.user.user_id}/> :
-            this.state.pageContent==="Añadir Amigo" ? <NewFriend/> : null}
+            this.state.pageContent==="Añadir Amigo" && this.state.user ? <NewFriend user_id={this.state.user.user_id}/> : null}
           </div>
         </div>
         {this.state.user!=undefined ?
