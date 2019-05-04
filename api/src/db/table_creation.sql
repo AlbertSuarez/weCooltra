@@ -13,6 +13,9 @@ WITH (
 ALTER TABLE wecooltra_user
   OWNER TO postgres;
 
+-- Column: wecooltra_user.balance
+ALTER TABLE wecooltra_user ADD balance numeric default 0 NOT NULL;
+
 /* TRIP */
 CREATE TABLE wecooltra_trip
 (
