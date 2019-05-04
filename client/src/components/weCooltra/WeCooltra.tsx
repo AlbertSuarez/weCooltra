@@ -5,6 +5,8 @@ import { IWeCooltraState } from './IWeCooltraState';
 import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
 import Map from '../map/Map';
 
+import menuLogo from '../../assets/menu.svg';
+
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
   constructor(props:IWeCooltraProps) {
@@ -21,7 +23,9 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
       <div>
         <div>
           <div className="pageHeader">
-            <div onClick={()=>this.toogleDrower()} className="iconMenu"></div>
+            <div onClick={()=>this.toogleDrower()} >
+              <img className="iconNav iconMenu" src={menuLogo}></img>
+            </div>
           </div>
           <div className="pageContent">
             {this.state.pageContent==="Main Page" ? <Map/> :
