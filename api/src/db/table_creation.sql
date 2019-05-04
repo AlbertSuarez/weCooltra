@@ -58,9 +58,19 @@ ALTER TABLE wecooltra_trip
   OWNER TO postgres;
 
 /* ACHIEVEMENT */
+CREATE SEQUENCE wecooltra_achievement_id_seq
+    INCREMENT 1
+    START 1
+    MINVALUE 1
+    MAXVALUE 9223372036854775807
+    CACHE 1;
+
+ALTER SEQUENCE wecooltra_achievement_id_seq
+    OWNER TO postgres;
+
 CREATE TABLE wecooltra_achievement
 (
-  id integer NOT NULL,
+  id integer NOT NULL DEFAULT nextval('wecooltra_achievement_id_seq'::regclass),
   title character varying(100) NOT NULL,
   description character varying(500) NOT NULL,
   points integer NOT NULL,
