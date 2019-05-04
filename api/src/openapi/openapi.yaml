@@ -14,6 +14,8 @@ tags:
     description: endpoint for managing user options.
   - name: trip
     description: endpoint for managing trip options.
+  - name: stadistics
+    description: endpoint for managing user stadistics.
 
 paths:
   /user:
@@ -96,6 +98,35 @@ paths:
       summary: Retrieve all the trips from a user
       description: Invoke this endpoint to obtain all the trips from a user.
       operationId: src.api.trip.get
+      parameters:
+        - name: user_id
+          in: query
+          description: Specifies the user to retrieve.
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /stadistics:
+    get:
+      tags:
+        - user
+      summary: Retrieve user stadistics
+      description: Invoke this endpoint to retrieve specific stadistics of a given user.
+      operationId: src.api.stadistics.get
       parameters:
         - name: user_id
           in: query
