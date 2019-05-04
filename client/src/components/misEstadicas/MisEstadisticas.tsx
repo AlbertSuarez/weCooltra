@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dialog, DialogTitle } from '@material-ui/core';
 import { IMisEstadisticasProps } from './IMisEstadisticasProps';
 import { IMisEstadisticasState } from './IMisEstadisticasState';
 import { IEstadisticaModel } from "../../models/IEstadisticaModel";
@@ -16,7 +17,8 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
         super(props);
 
         this.state = {
-            estadistica: undefined
+            estadistica: undefined,
+            dialogOpen: true
         }
     }
 
@@ -25,6 +27,11 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
             <div className="misEstadisticas">
                 {this.state.estadistica==undefined ? null : 
                     <div>
+
+                        {this.props.user_id!=0 ?
+                            <div className="misEstadisticasFlex">
+                                <div className="misEstadisticasFlexText">{this.props.user_name}</div>
+                            </div> : null}
 
                         <div className="header">
                             <p>Utilizando eCooltra tienes acumulado:</p>
@@ -45,7 +52,7 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                         <div className="stats">
                             <div className="stats-content">
                             <img className="iconNav" src={abacusLogo}></img>
-                                <p>{this.state.estadistica.trips + " viages"}</p>
+                                <p>{this.state.estadistica.trips + " viajes"}</p>
                             </div>
                             <div className="stats-content">
                                 <img className="iconNav" src={statsLogo}></img>
@@ -64,9 +71,22 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                         </div>
                     </div>
                 }
+                <Dialog open={this.state.dialogOpen} onClose={()=>this.handleClose()}>
+                    <DialogTitle>Set backup account</DialogTitle>
+                    <div className="misEstadisticasFlex">
+                        <img className="iconBadge" src={creditLogo}></img>
+                    </div>
+                    <div className="descripcionTitle">Descripción</div>
+                    <div className="descripcionContent">ef  wenfwe fjkwebgweo jf wepfhweof jwpf weofjwepofjweifjwepofwe
+                    fwefwef</div>
+                </Dialog>
             </div>
         );
     }
+
+    public handleClose(){
+        this.setState({dialogOpen: false });
+    };
 
     public componentDidMount(){
         let service = new Service();
