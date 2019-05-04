@@ -217,6 +217,28 @@ paths:
                 type: string
                 description: Error description.
 
+  /friend/count:
+    get:
+      tags:
+        - friend
+      summary: Retrieve friend count
+      description: Invoke this endpoint to retrieve the total amount of friends.
+      operationId: src.api.friend.count
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /statistics:
     get:
       tags:
