@@ -5,6 +5,9 @@ import { IEstadisticaModel } from "../../models/IEstadisticaModel";
 import Service from '../../services/Service';
 //ICONS
 import creditLogo from '../../assets/credit.svg';
+import motoEcooltra from '../../assets/askoll.png';
+import abacusLogo from '../../assets/abacus.svg';
+import statsLogo from '../../assets/computer.svg';
 
 
 export default class MisEstadisticas extends React.Component<IMisEstadisticasProps, IMisEstadisticasState> {
@@ -22,22 +25,36 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
             <div className="misEstadisticas">
                 {this.state.estadistica==undefined ? null : 
                     <div>
-                        <div className="misEstadisticasHeader">
-                            <ellipse className="misEstadisticasHeaderElipse"></ellipse>
-                            <div className="misEstadisticasHeaderKilometersNumber">{this.state.estadistica.kilometros}</div>
-                            <div className="misEstadisticasHeaderKilometersText">kilometros</div>
-                            <image className="misEstadisticasImageScooter"/>
-                        </div>
-                        <div className="misEstadisticasContent">
-                            <div className="misEstadisticasContentFlex">
-                                <div className="misEstadisticasContentPuntosContainer">
-                                    <div className="misEstadisticasContentPuntos">{this.state.estadistica.puntos + " puntos"}</div>
-                                </div>
+
+                        <div className="header">
+                            <p>Utilizando eCooltra tienes acumulado:</p>
+                            <div className="puntos-container">
+                                <p className="puntos">{this.state.estadistica.puntos + " puntos"}</p>
                             </div>
+                        </div>
+                        <div className="scooter-img">
+                            <img src={motoEcooltra}></img>
+                        </div>
+                        <div className="kilometers">
+                            <div className="eclipse-km">
+                                <p className="numbers-km">{this.state.estadistica.kilometros}</p>
+                                <p className="text-km">kilómetros</p>
+                            </div>
+                        </div>
+
+                        <div className="stats">
+                            <div className="stats-content">
+                            <img className="iconNav" src={abacusLogo}></img>
+                                <p>45 viajes</p>
+                            </div>
+                            <div className="stats-content">
+                                <img className="iconNav" src={statsLogo}></img>
+                                <p>5km/viaje</p>
+                            </div>
+                        </div>
+                        <div className="degradado">
                             <div className="misEstadisticasLogros">
-                                <div className="misEstadisticasContentFlex">
-                                    <div className="misEstadisticasLogrosTitle">LOGROS</div>  
-                                </div>
+                                <div className="title-logros">LOGROS</div>  
                                 <div className="misEstadisticasContentFlexLogros">
                                     {this.state.estadistica.logros.map((logro:string)=>{
                                         return (<img className="iconBadge" src={creditLogo}></img>)

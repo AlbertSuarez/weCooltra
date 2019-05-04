@@ -1,5 +1,6 @@
 from flask import jsonify
 
+from src.model.achievement_user import AchievementUser
 from src.model.trip import Trip
 from src.util import log
 from src.model.user import User
@@ -17,7 +18,8 @@ def get(user_id):
                 end_kilometers = trip.last_odometer_in_meters / 1000.0
                 user_kilometers += (end_kilometers - start_kilometers)
 
-            achievement_list = []
+            achievement_list = db_session().query(AchievementUser).filter_by(user_id=user_id).all()
+            achievement_list = [achievement_user.achievement for achievement_user in achievement_list]
 
             response = {
                 'user': user.serialize(),
@@ -30,5 +32,5 @@ def get(user_id):
         else:
             return jsonify(error=True, message='No user found with {} as id.'.format(user_id)), 400
     except Exception as e:
-        log.error('Unexpected error in GET/user: {}'.format(e))
+        log.error('Unexpected error in GET/statistics: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
