@@ -4,6 +4,7 @@ import { IWeCooltraProps } from './IWeCooltraProps';
 import { IWeCooltraState } from './IWeCooltraState';
 import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
 import Map from '../map/Map';
+import MisEstadisticas from '../misEstadicas/MisEstadisticas';
 
 import menuLogo from '../../assets/menu.svg';
 
@@ -31,7 +32,7 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             {this.state.pageContent==="Main Page" ? <Map/> :
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
-            this.state.pageContent==="Mis estadísticas" ? null : 
+            this.state.pageContent==="Mis estadísticas" ? <MisEstadisticas/> : 
             this.state.pageContent==="Riders" ? null : 
             this.state.pageContent==="Packs" ? null :
             this.state.pageContent==="Invitar Amigos" ? null : null}

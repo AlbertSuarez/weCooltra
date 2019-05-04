@@ -76,7 +76,7 @@ def fill_database():
                 try:
                     full_name = '{} {}'.format(random_personality['name']['first'], random_personality['name']['last'])
                     image_url = random_personality['picture']['large']
-                    user = User(id=user_id, full_name=full_name, image_url=image_url, level=1)
+                    user = User(id=user_id, full_name=full_name, image_url=image_url, points=0)
                     db_session().add(user)
                     db_session().flush()
 

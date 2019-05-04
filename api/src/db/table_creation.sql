@@ -4,7 +4,7 @@ CREATE TABLE wecooltra_user
   id integer NOT NULL,
   full_name character varying(100) NOT NULL,
   image_url character varying(500) NOT NULL,
-  level integer NOT NULL,
+  points integer NOT NULL,
   CONSTRAINT wecooltra_user_pkey PRIMARY KEY (id)
 )
 WITH (
