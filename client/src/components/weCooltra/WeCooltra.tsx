@@ -10,6 +10,7 @@ import menuLogo from '../../assets/menu.svg';
 import backLogo from '../../assets/left-arrow.svg';
 import Login from '../login/Login';
 import { IUserModel } from '../../models/IUserModel';
+import Community from '../community/community';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -49,7 +50,7 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
             this.state.pageContent==="Mis estadísticas" ? <MisEstadisticas/> : 
-            this.state.pageContent==="Riders" ? null : 
+            this.state.pageContent==="Comunidad" ? <Community/> : 
             this.state.pageContent==="Packs" ? null :
             this.state.pageContent==="Invitar Amigos" ? null : null}
           </div>
