@@ -1,0 +1,88 @@
+
+
+@import '_colors.scss';
+
+.mainDrawer {
+    width: 80%;
+}
+
+.MuiDrawer-paper-3 {
+    width: 80%;
+}
+
+/* Profile */
+
+
+.first-level {
+    margin-top: 0.5em;
+    display: flex;
+}
+
+.profile-photo {
+    margin: 0 auto;
+}
+
+.profile-photo img {
+    border-radius: 100px;
+}
+
+.profile-info {
+    margin-top:  -50px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    z-index: -1;
+    background-image: linear-gradient(to bottom, #a9ebff, #9ee6fc, #92e0f8, #86dbf5, #79d6f2);
+}
+
+.profile-info .under_div {
+    margin-left: 3em;
+    margin-right: 3em;
+}
+
+.profile-info .under_div p {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 700;
+    padding: 0.5em;
+}
+
+.profile-info .under_div .name {
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 0.5em;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.profile-info .money,  .profile-info .puntuation{
+    border-radius: 15px;
+    background-color: $secondary-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-right: 0.25em;
+    display: flex;
+}
+
+.profile-info .money p , .profile-info .puntuation p{
+    margin: 0;
+}
+
+.profile-info .puntuation {
+    background-color: gray;
+    margin-left: 0.25em;
+}
+
+.info {
+    display: flex;
+}
+
+.info img {
+    margin: 0 auto;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.money, .puntuation {
+    text-align: center;
+    width: 50%;
+}
