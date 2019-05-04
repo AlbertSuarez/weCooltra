@@ -53,3 +53,29 @@
   background: #F7F7F7;
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.21);
 }
+
+
+.myFriends{
+  position: absolute;
+  width: 305px;
+  height: 73px;
+  left: 29px;
+  top: 113px;
+  
+  background: linear-gradient(5.38deg, #A2E982 17.78%, #66D1F0 81.46%);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+.createEvent{
+  position: absolute;
+  width: 305px;
+  height: 64px;
+  left: 32px;
+  top: 200px;
+
+  background: linear-gradient(4.72deg, #F0F0F0 17.78%, #F7F7F7 81.46%);
+  border-radius: 8px;
+}
