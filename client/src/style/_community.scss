@@ -1,0 +1,37 @@
+.community {
+    margin: 0 auto;
+    margin-top: 8em;
+    display: grid;
+}
+
+.myFriends, .createEvent {
+    margin: 0 auto;
+    margin-top: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border: none;
+    border-radius: 10px;
+    width: 24em;
+}
+
+
+.myFriends > p, .createEvent > p {
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+
+
+.myFriends {
+    background: linear-gradient(5.38deg, #A2E982 17.78%, #66D1F0 81.46%);
+}
+
+.createEvent{
+    background: linear-gradient(4.72deg, #F0F0F0 17.78%, #F7F7F7 81.46%);
+}
+
+.degradado-com {
+    height: 76vh;
+    max-height: -webkit-fill-available;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(115, 222, 65, 0.42) 100%);
+}
