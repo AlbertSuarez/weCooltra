@@ -16,8 +16,8 @@ tags:
     description: endpoint for managing trip options.
   - name: achievement
     description: endpoint for managing achievement options.
-  - name: stadistics
-    description: endpoint for managing user stadistics.
+  - name: statistics
+    description: endpoint for managing user statistics.
 
 paths:
   /user:
@@ -151,13 +151,13 @@ paths:
                 type: string
                 description: Error description.
 
-  /stadistics:
+  /statistics:
     get:
       tags:
-        - stadistics
-      summary: Retrieve user stadistics
-      description: Invoke this endpoint to retrieve specific stadistics of a given user.
-      operationId: src.api.stadistics.get
+        - statistics
+      summary: Retrieve user statistics
+      description: Invoke this endpoint to retrieve specific statistics of a given user.
+      operationId: src.api.statistics.get
       parameters:
         - name: user_id
           in: query

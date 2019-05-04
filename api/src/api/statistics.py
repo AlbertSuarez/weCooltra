@@ -32,5 +32,5 @@ def get(user_id):
         else:
             return jsonify(error=True, message='No user found with {} as id.'.format(user_id)), 400
     except Exception as e:
-        log.error('Unexpected error in GET/user: {}'.format(e))
+        log.error('Unexpected error in GET/statistics: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
