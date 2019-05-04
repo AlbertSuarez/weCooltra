@@ -2,6 +2,7 @@ import IService from "./IService";
 import { string } from "prop-types";
 import { IEstadisticaModel } from "../models/IEstadisticaModel";
 import { IUserModel } from "../models/IUserModel";
+import { ILogroModel } from "../models/ILogroModel";
 
 export default class Service implements IService {
 
@@ -18,12 +19,17 @@ export default class Service implements IService {
                 response.json()
                 .then(data=>{
 
-                    console.log("DATA 1",data);
+                    let logros = new Array<ILogroModel>();
 
-                    let logros = new Array<string>();
-                    logros.push("Barcelona Expert");
-                    logros.push("Madrid Expert");
-                    logros.push("A Favor de la Comunidad");
+                    let logro: ILogroModel = {
+                        id: 7,
+                        title: 'Barcelona Expert',
+                        description: 'bla bla bla',
+                        puntos: 100
+                    }
+                    logros.push(logro);
+                    logros.push(logro);
+                    logros.push(logro);
 
                     let myStatistics: IEstadisticaModel = {
                         user_id: data.response.user.id,
