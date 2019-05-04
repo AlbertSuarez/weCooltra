@@ -31,7 +31,7 @@
     padding-top: 40px;
     padding-bottom: 20px;
     z-index: -1;
-    background-image: linear-gradient(to bottom, #a9ebff, #9ee6fc, #92e0f8, #86dbf5, #79d6f2);
+    background-color: $gray-two-color;
 }
 
 .profile-info .under_div {
@@ -55,10 +55,10 @@
 }
 
 .profile-info .money,  .profile-info .puntuation{
-    border-radius: 15px;
-    background-color: $secondary-color;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    border-radius: 5px;
+    background-image: linear-gradient(to top, #b4ca2c, #bbcf3e, #c2d54e, #c9da5c, #d0e06a);
+    padding-top: 2px;
+    padding-bottom: 2px;
     margin-right: 0.25em;
     display: flex;
 }
@@ -68,12 +68,13 @@
 }
 
 .profile-info .puntuation {
-    background-color: gray;
+    background-image: linear-gradient(to bottom, #a9ebff, #9ee6fc, #92e0f8, #86dbf5, #79d6f2);
     margin-left: 0.25em;
 }
 
-.info {
+.profile-info .info {
     display: flex;
+    margin-top: 15px;
 }
 
 .info img {
