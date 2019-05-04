@@ -7,6 +7,9 @@ import Map from '../map/Map';
 import MisEstadisticas from '../misEstadicas/MisEstadisticas';
 
 import menuLogo from '../../assets/menu.svg';
+import backLogo from '../../assets/left-arrow.svg';
+import Login from '../login/Login';
+import { IUserModel } from '../../models/IUserModel';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -15,7 +18,8 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
 
     this.state = {
       navigationDrawerOpen: false,
-      pageContent: "Main Page"
+      pageContent: "Login",
+      user: undefined
     }
   }
 
@@ -24,12 +28,24 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
       <div>
         <div>
           <div className="pageHeader">
-            <div onClick={()=>this.toogleDrower()} >
-              <img className="iconNav iconMenu" src={menuLogo}></img>
+            {this.state.user!=undefined ?
+              this.state.pageContent==="Main Page" ?
+
+              <div onClick={()=>this.toogleDrower()} >
+                <img className="iconNav iconMenu" src={menuLogo}></img>
+              </div> :
+
+              <div onClick={()=>this.goBack()} >
+                <img className="iconNav iconMenu" src={backLogo}></img>
+              </div> : null
+            }
+            <div className="appHeader">
+              <div>{this.state.pageContent}</div>
             </div>
           </div>
           <div className="pageContent">
-            {this.state.pageContent==="Main Page" ? <Map/> :
+            {this.state.pageContent==="Login" ? <Login loginUser={this.loginUser.bind(this)} /> :
+            this.state.pageContent==="Main Page" ? <Map/> :
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
             this.state.pageContent==="Mis estadísticas" ? <MisEstadisticas/> : 
@@ -38,22 +54,33 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Invitar Amigos" ? null : null}
           </div>
         </div>
-        <NavigationDrawer 
-          navigationDrawerOpen={this.state.navigationDrawerOpen}
-          changePage={this.changePage.bind(this)}
-          toogleDrower={this.toogleDrower.bind(this)}/>
+        {this.state.user!=undefined ?
+          <NavigationDrawer 
+            navigationDrawerOpen={this.state.navigationDrawerOpen}
+            user={this.state.user}
+            changePage={this.changePage.bind(this)}
+            toogleDrower={this.toogleDrower.bind(this)}/> : null }
       </div>
     );
   }
 
   public changePage(pageContent:string){
-    this.setState({pageContent: pageContent})
+    if(pageContent==='Log Out') this.setState({pageContent: 'Login', user: undefined});
+    else this.setState({pageContent: pageContent})
+    this.toogleDrower();
+  }
+
+  public goBack(){
+    if(this.state.pageContent==='Friends') this.setState({pageContent: 'Comunidad'});
+    else this.setState({pageContent: 'Main Page'})
   }
 
   public toogleDrower(){
-    console.log("toogle 2");
     this.setState({navigationDrawerOpen: !this.state.navigationDrawerOpen});
   }
 
+  public loginUser(user: IUserModel){
+    this.setState({pageContent: "Main Page", user: user});
+  }
 
 }

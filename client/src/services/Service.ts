@@ -1,6 +1,7 @@
 import IService from "./IService";
 import { string } from "prop-types";
 import { IEstadisticaModel } from "../models/IEstadisticaModel";
+import { IUserModel } from "../models/IUserModel";
 
 export default class Service implements IService {
 
@@ -33,6 +34,35 @@ export default class Service implements IService {
                 // .then((data)=>{
                 //     resolve(data.base);  
                 // })
+            })
+        });
+    }
+
+    public getUser(user_id: string): Promise<IUserModel>{
+        return new Promise<IUserModel>((resolve,reject)=>{
+            fetch("http://api.wecooltra.ga/user?user_id="+user_id,{
+                method: 'GET',
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    console.log("DATA",data);
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else{
+                        let user: IUserModel = {
+                            user_id: data.response.id,
+                            fullName: data.response.full_name,
+                            image_url: data.response.image_url,
+                            points: data.response.points
+                        }
+                        resolve(user);   
+                    }
+                })
+            })
+            .catch(error=>{
+                reject(error);
             })
         });
     }
