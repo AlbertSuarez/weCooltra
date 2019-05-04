@@ -56,3 +56,18 @@ WITH (
 );
 ALTER TABLE wecooltra_trip
   OWNER TO postgres;
+
+/* ACHIEVEMENT */
+CREATE TABLE wecooltra_achievement
+(
+  id integer NOT NULL,
+  title character varying(100) NOT NULL,
+  description character varying(500) NOT NULL,
+  points integer NOT NULL,
+  CONSTRAINT wecooltra_achievement_pkey PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE wecooltra_achievement
+  OWNER TO postgres;
