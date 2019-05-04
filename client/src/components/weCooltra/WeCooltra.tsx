@@ -40,11 +40,10 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
 
               <div onClick={()=>this.goBack()} >
                 <img className="iconNav iconMenu" src={backLogo}></img>
+               
               </div> : null
             }
-            <div className="appHeader">
-              <div>{this.state.pageContent}</div>
-            </div>
+             <p className="subtitle">{this.state.pageContent}</p>
           </div>
           <div className="pageContent">
             {this.state.pageContent==="Login" ? <Login loginUser={this.loginUser.bind(this)} /> :
