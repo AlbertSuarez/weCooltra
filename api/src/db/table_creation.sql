@@ -81,3 +81,24 @@ WITH (
 );
 ALTER TABLE wecooltra_achievement
   OWNER TO postgres;
+
+/* ACHIEVEMENT - USER */
+CREATE TABLE wecooltra_achievement_user
+(
+  achievement_id integer NOT NULL,
+  user_id integer NOT NULL,
+  CONSTRAINT wecooltra_achievement_user_pkey PRIMARY KEY (achievement_id, user_id),
+  CONSTRAINT wecooltra_achievement_user_achievement_id_fkey FOREIGN KEY (achievement_id)
+        REFERENCES wecooltra_achievement (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+  CONSTRAINT wecooltra_achievement_user_user_id_fkey FOREIGN KEY (user_id)
+        REFERENCES wecooltra_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE wecooltra_achievement_user
+  OWNER TO postgres;
