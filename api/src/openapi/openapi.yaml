@@ -182,6 +182,41 @@ paths:
                 type: string
                 description: Error description.
 
+    post:
+      tags:
+        - friend
+      summary: Create a relation between two users making them friends
+      description: Invoke this endpoint to relate a user with another one making them friends.
+      operationId: src.api.friend.post
+      requestBody:
+        required: true
+        description: Body wrapper for the request.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_one:
+                  type: integer
+                  description: User one identifier.
+                user_two:
+                  type: integer
+                  description: User two identifier.
+      responses:
+        200:
+          description: Standard UnstuckOverflow API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /statistics:
     get:
       tags:
