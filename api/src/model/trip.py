@@ -35,7 +35,7 @@ class Trip(Base):
     reservation_at = db.Column(db.DateTime(timezone=False), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('wecooltra_user.id'), nullable=False)
-    participant = relationship(User.__name__)
+    user = relationship(User.__name__)
 
     def serialize(self):
         return dict(
