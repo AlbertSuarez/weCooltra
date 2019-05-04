@@ -88,3 +88,19 @@
   @extend %icon-class;
   background-image:url('../assets/scooter.svg');
 }
+
+.iconMenu{
+  @extend %icon-class;
+  height: 50px;
+  width: 50px;
+  margin: 9px;
+  cursor: pointer;
+  background-image:url('../assets/menu.svg');
+}
+
+.iconBackDrawer{
+  @extend %icon-class;
+  margin: 11px;
+  margin-left: 16px;
+  background-image:url('../assets/left-arrow.svg');
+}
