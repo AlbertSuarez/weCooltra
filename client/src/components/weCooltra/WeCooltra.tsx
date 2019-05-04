@@ -44,17 +44,19 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Invitar Amigos" ? null : null}
           </div>
         </div>
-        <NavigationDrawer 
-          navigationDrawerOpen={this.state.navigationDrawerOpen}
-          changePage={this.changePage.bind(this)}
-          toogleDrower={this.toogleDrower.bind(this)}
-          logOutUser={this.logOutUser.bind(this)}/>
+        {this.state.user!=undefined ?
+          <NavigationDrawer 
+            navigationDrawerOpen={this.state.navigationDrawerOpen}
+            user={this.state.user}
+            changePage={this.changePage.bind(this)}
+            toogleDrower={this.toogleDrower.bind(this)}/> : null }
       </div>
     );
   }
 
   public changePage(pageContent:string){
-    this.setState({pageContent: pageContent})
+    if(pageContent==='Log Out') this.setState({pageContent: 'Login', user: undefined});
+    else this.setState({pageContent: pageContent})
   }
 
   public toogleDrower(){
@@ -64,10 +66,5 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
   public loginUser(user: IUserModel){
     this.setState({pageContent: "Main Page", user: user});
   }
-
-  public logOutUser(){
-    this.setState({user: undefined});
-  }
-
 
 }

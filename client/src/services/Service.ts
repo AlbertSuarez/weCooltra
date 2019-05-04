@@ -46,13 +46,19 @@ export default class Service implements IService {
             .then(response=>{
                 response.json()
                 .then(data=>{
-                    let user: IUserModel = {
-                        user_id: data.response.id,
-                        fullName: data.response.full_name,
-                        image_url: data.response.image_url,
-                        points: data.response.points
+                    console.log("DATA",data);
+                    if(data.error){
+                        reject(data.error.message);
                     }
-                    resolve(user);
+                    else{
+                        let user: IUserModel = {
+                            user_id: data.response.id,
+                            fullName: data.response.full_name,
+                            image_url: data.response.image_url,
+                            points: data.response.points
+                        }
+                        resolve(user);   
+                    }
                 })
             })
             .catch(error=>{

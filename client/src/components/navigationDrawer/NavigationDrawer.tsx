@@ -19,6 +19,7 @@ import settingsLogo from '../../assets/settings.svg';
 import shoppingLogo from '../../assets/shopping-cart.svg';
 import backLogo from '../../assets/left-arrow.svg';
 import coinsLogo from '../../assets/coins.svg';
+import logOut from '../../assets/logout.svg';
 
 export default class NavigationDrawer extends React.Component<INavigationDrawerProps, INavigationDrawerState> {
 
@@ -44,18 +45,18 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
 
                 
                 <div className="profile-photo">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg"/>
+                    <img src={this.props.user.image_url}/>
                 </div>
                 <div className="profile-info">
                     <div className="under_div">
-                        <p className="name">Elena Ruiz</p>
+                        <p className="name">{this.props.user.fullName}</p>
                         <div className="info">
                             <div className="money">
                                 <img className="iconNav" src={coinsLogo}></img>
                                 <p>9,18€</p>    
                             </div>
                             <div className="puntuation">
-                                <p>503xp</p>
+                                <p>{this.props.user.points+"xp"}</p>
                             </div>
                         </div>
                     </div>
@@ -73,12 +74,13 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                 </List>
                 <Divider />
                 <List>
-                    {['Mis estadísticas', 'Comunidad','Packs','Invitar Amigos'].map((text, index) => (
+                    {['Mis estadísticas', 'Comunidad','Packs','Invitar Amigos','Log Out'].map((text, index) => (
                         <ListItem onClick={()=>this.selectOption(text)} button key={text}>
                             <ListItemIcon>
                                 <img className="iconNav" src={text==='Mis estadísticas' ? qualityLogo : 
                                                  text==="Riders" ? scooterLogo :
-                                                 text==='Packs' ? shoppingLogo : giftLogo}></img>
+                                                 text==='Packs' ? shoppingLogo :
+                                                 text==='Invitar Amigos' ? giftLogo : logOut}></img>
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
@@ -95,10 +97,6 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
 
     private toogleDrower(){
         this.props.toogleDrower();
-    }
-
-    private logOutUser(){
-        this.props.logOutUser();
     }
 
 }
