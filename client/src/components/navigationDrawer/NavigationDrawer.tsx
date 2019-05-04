@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { List } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { INavigationDrawerState } from './INavigationDrawerState';
@@ -23,9 +24,24 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
         return (
             <Drawer open={this.state.navigationDrawerOpen}>
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                    {['Pagos', 'Mis viajes pasados'].map((text, index) => (
+                        <ListItem onClick={()=>this.selectOption(text)} button key={text}>
+                            <ListItemIcon>
+                                <span className={text=='Pagos' ? "iconCredit" : "iconScooter"}></span>
+                            </ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
+                <Divider />
+                <List>
+                    {['Mis estadísticas', 'Riders','Packs','Invitar Amigos'].map((text, index) => (
+                        <ListItem onClick={()=>this.selectOption(text)} button key={text}>
+                            <ListItemIcon>
+                                <span className={text=='Mis estadísticas' ? "iconQuality" : 
+                                                 text=="Riders" ? "iconQuality" :
+                                                 text=='Packs' ? "iconCart" : "iconGift"}></span>
+                            </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
@@ -36,6 +52,10 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
 
     public componentWillReciveProps(newProps: INavigationDrawerProps){
         this.setState({navigationDrawerOpen: newProps.navigationDrawerOpen});
+    }
+
+    private selectOption(text: string){
+        this.props.changePage(text);
     }
 
 }

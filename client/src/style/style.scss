@@ -49,3 +49,42 @@
 .pageContent{
    
 }
+
+//STYLES
+%icon-class{
+  height: 24px;
+  width: 24px;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.iconCredit{
+  @extend %icon-class;
+  background-image:url('../assets/credit.svg');
+}
+
+.iconQuality{
+  @extend %icon-class;
+  background-image:url('../assets/quality.svg');
+}
+
+.iconGift{
+  @extend %icon-class;
+  background-image:url('../assets/gift.svg');
+}
+
+.iconScooter{
+  @extend %icon-class;
+  background-image:url('../assets/scooter.svg');
+}
+
+.iconCart{
+  @extend %icon-class;
+  background-image:url('../assets/shopping-cart.svg');
+}
+
+.iconPacks{
+  @extend %icon-class;
+  background-image:url('../assets/scooter.svg');
+}
