@@ -44,48 +44,51 @@ def fill_database():
                     image_url = random_personality['picture']['large']
                     user = User(id=user_id, full_name=full_name, image_url=image_url, points=0)
                     db_session().add(user)
+                    db_session().flush()
                     db_session().commit()
+                    success = True
                 except Exception as e:
                     log.warn('Skipping user creation due to: [{}]'.format(e))
+                    success = False
+                if success:
+                    for t in trips:
+                        try:
+                            trip = Trip(
+                                id=int(t[0]),
+                                start_point_lat=float(t[1]),
+                                start_point_lon=float(t[2]),
+                                end_point_lat=float(t[3]),
+                                end_point_lon=float(t[4]),
+                                started_at=date.to_string(t[5]),
+                                ended_at=date.to_string(t[6]),
+                                system_name=t[8],
+                                vehicle_external_id=t[9],
+                                duration_in_seconds=float(t[10]),
+                                billable_duration_in_seconds=int(t[11]),
+                                first_checkout_attempt_at=date.to_string(t[12]),
+                                first_checkout_attempt_error=None if not t[13] else t[13],
+                                first_checkout_attempt_error_details=None if not t[14] else t[14],
+                                first_checkout_attempt_id=int(t[15]),
+                                first_checkout_attempt_state=t[16],
+                                last_checkout_attempt_at=date.to_string(t[17]),
+                                last_checkout_attempt_error=None if not t[18] else t[18],
+                                last_checkout_attempt_error_details=None if not t[19] else t[19],
+                                last_checkout_attempt_id=int(t[20]),
+                                last_checkout_attempt_state=t[21],
+                                first_odometer_in_meters=int(t[22]),
+                                last_odometer_in_meters=int(t[24]),
+                                pause_duration_in_seconds=float(t[27]),
+                                reservation_at=date.to_string(t[28]),
+                                user_id=user_id
+                            )
+                            db_session().add(trip)
+                            db_session().flush()
+                        except Exception as e:
+                            log.warn('Skipping trip creation due to: [{}]'.format(e))
+                            db_session().rollback()
+                    db_session().commit()
+                else:
                     db_session().rollback()
-                    continue
-                for t in trips:
-                    try:
-                        trip = Trip(
-                            id=int(t[0]),
-                            start_point_lat=float(t[1]),
-                            start_point_lon=float(t[2]),
-                            end_point_lat=float(t[3]),
-                            end_point_lon=float(t[4]),
-                            started_at=date.to_string(t[5]),
-                            ended_at=date.to_string(t[6]),
-                            system_name=t[8],
-                            vehicle_external_id=t[9],
-                            duration_in_seconds=float(t[10]),
-                            billable_duration_in_seconds=int(t[11]),
-                            first_checkout_attempt_at=date.to_string(t[12]),
-                            first_checkout_attempt_error=None if not t[13] else t[13],
-                            first_checkout_attempt_error_details=None if not t[14] else t[14],
-                            first_checkout_attempt_id=int(t[15]),
-                            first_checkout_attempt_state=t[16],
-                            last_checkout_attempt_at=date.to_string(t[17]),
-                            last_checkout_attempt_error=None if not t[18] else t[18],
-                            last_checkout_attempt_error_details=None if not t[19] else t[19],
-                            last_checkout_attempt_id=int(t[20]),
-                            last_checkout_attempt_state=t[21],
-                            first_odometer_in_meters=int(t[22]),
-                            last_odometer_in_meters=int(t[24]),
-                            pause_duration_in_seconds=float(t[27]),
-                            reservation_at=date.to_string(t[28]),
-                            user_id=user_id
-                        )
-                        db_session().add(trip)
-                        db_session().commit()
-                    except Exception as e:
-                        log.warn('Skipping trip creation due to: [{}]'.format(e))
-                        db_session().rollback()
-                        continue
-                db_session().commit()
             else:
                 log.warn('Skipping user creation for user_id: {}'.format(user_id))
 
