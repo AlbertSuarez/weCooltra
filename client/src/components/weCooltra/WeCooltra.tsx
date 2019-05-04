@@ -23,7 +23,9 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
     this.state = {
       navigationDrawerOpen: false,
       pageContent: "Login",
-      user: undefined
+      user: undefined,
+      id_friend: 0,
+      name_friend: ''
     }
   }
 
@@ -51,11 +53,15 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Main Page" ? <Map/> :
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
-            this.state.pageContent==="Mis estadísticas" && this.state.user ? <MisEstadisticas user_id={this.state.user.user_id}/> : 
+            this.state.pageContent==="Mis estadísticas" && this.state.user ? <MisEstadisticas user_id={this.state.user.user_id}
+                                                                                              user_name={''}/> : 
+            this.state.pageContent==="Rider" && this.state.user ? <MisEstadisticas user_id={this.state.id_friend}
+                                                                                    user_name={this.state.name_friend}/> : 
             this.state.pageContent==="Comunidad" ? <Community changePage={this.changePage.bind(this)}/> : 
             this.state.pageContent==="Packs" ? null :
             this.state.pageContent==="Lista de Amigos" && this.state.user ? <FriendsList 
-                                                                              changePage={this.changePage.bind(this)} 
+                                                                              visitFriendProfile={this.visitFriendProfile.bind(this)} 
+                                                                              changePage={this.changePage.bind(this)}
                                                                               user_id={this.state.user.user_id}/> :
             this.state.pageContent==="Añadir Amigo" && this.state.user ? <NewFriend user_id={this.state.user.user_id}/> : null}
           </div>
@@ -79,10 +85,14 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
     }
   }
 
+  public visitFriendProfile(pageContent: string, friend_id: number, friend_name: string){
+    this.setState({pageContent: pageContent, id_friend: friend_id, name_friend: friend_name});
+  }
+
   public goBack(){
     if(this.state.pageContent==='Lista de Amigos') this.setState({pageContent: 'Comunidad'});
-    else if(this.state.pageContent==='Añadir Amigo') this.setState({pageContent: 'Lista de Amigos'});
-    else this.setState({pageContent: 'Main Page'})
+    else if(this.state.pageContent==='Añadir Amigo' || this.state.pageContent==="Rider") this.setState({pageContent: 'Lista de Amigos'});
+    else this.setState({pageContent: 'Main Page'});
   }
 
   public toogleDrower(){

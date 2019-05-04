@@ -1,4 +1,5 @@
 import React from 'react';
+import { Dialog, DialogTitle } from '@material-ui/core';
 import { IMisEstadisticasProps } from './IMisEstadisticasProps';
 import { IMisEstadisticasState } from './IMisEstadisticasState';
 import { IEstadisticaModel } from "../../models/IEstadisticaModel";
@@ -16,7 +17,11 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
         super(props);
 
         this.state = {
-            estadistica: undefined
+            estadistica: undefined,
+            dialogOpen: false,
+            dialogTitle: '',
+            dialogDescription: '',
+            dialogImg: ''
         }
     }
 
@@ -25,6 +30,11 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
             <div className="misEstadisticas">
                 {this.state.estadistica==undefined ? null : 
                     <div>
+
+                        {this.props.user_id!=0 ?
+                            <div className="misEstadisticasFlex">
+                                <div className="misEstadisticasFlexText">{this.props.user_name}</div>
+                            </div> : null}
 
                         <div className="header">
                             <p>Utilizando eCooltra tienes acumulado:</p>
@@ -45,7 +55,7 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                         <div className="stats">
                             <div className="stats-content">
                             <img className="iconNav" src={abacusLogo}></img>
-                                <p>{this.state.estadistica.trips + " viages"}</p>
+                                <p>{this.state.estadistica.trips + " viajes"}</p>
                             </div>
                             <div className="stats-content">
                                 <img className="iconNav" src={statsLogo}></img>
@@ -57,15 +67,31 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                                 <div className="title-logros">LOGROS</div>  
                                 <div className="misEstadisticasContentFlexLogros">
                                     {this.state.estadistica.logros.map((logro:string)=>{
-                                        return (<img className="iconBadge" src={creditLogo}></img>)
+                                        return (<img onClick={()=>this.openDialog(logro,logro,logro)} className="iconBadge" src={creditLogo}></img>)
                                     })}
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
+                <Dialog open={this.state.dialogOpen} onClose={()=>this.handleClose()}>
+                    <DialogTitle>{this.state.dialogTitle}</DialogTitle>
+                    <div className="misEstadisticasFlex">
+                        <img className="iconBadge" src={this.state.dialogImg}></img>
+                    </div>
+                    <div className="descripcionTitle">Descripción</div>
+                    <div className="descripcionContent">{this.state.dialogDescription}</div>
+                </Dialog>
             </div>
         );
+    }
+
+    private handleClose(){
+        this.setState({dialogOpen: false });
+    };
+
+    private openDialog(title:string, description:string, imgUrl: string){
+        this.setState({dialogOpen:true, dialogTitle: title, dialogDescription: description, dialogImg:imgUrl});
     }
 
     public componentDidMount(){
