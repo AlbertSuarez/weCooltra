@@ -29,6 +29,23 @@ services:
       - 8081:8081
     restart: always
 
+  client_app:
+    image: wecooltra_client_app
+    container_name: wecooltra_client_app
+    build:
+      context: client
+      dockerfile: Dockerfile
+    volumes:
+      - './client:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    networks:
+      - wecooltra
+    ports:
+      - 8080:3000
+    environment:
+      - NODE_ENV=development
+    restart: always
+
 networks:
   wecooltra:
     name: wecooltra
