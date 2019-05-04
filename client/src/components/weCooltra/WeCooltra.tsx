@@ -7,6 +7,7 @@ import Map from '../map/Map';
 import MisEstadisticas from '../misEstadicas/MisEstadisticas';
 
 import menuLogo from '../../assets/menu.svg';
+import backLogo from '../../assets/left-arrow.svg';
 import Login from '../login/Login';
 import { IUserModel } from '../../models/IUserModel';
 
@@ -28,10 +29,19 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
         <div>
           <div className="pageHeader">
             {this.state.user!=undefined ?
+              this.state.pageContent==="Main Page" ?
+
               <div onClick={()=>this.toogleDrower()} >
                 <img className="iconNav iconMenu" src={menuLogo}></img>
+              </div> :
+
+              <div onClick={()=>this.goBack()} >
+                <img className="iconNav iconMenu" src={backLogo}></img>
               </div> : null
             }
+            <div className="appHeader">
+              <div>{this.state.pageContent}</div>
+            </div>
           </div>
           <div className="pageContent">
             {this.state.pageContent==="Login" ? <Login loginUser={this.loginUser.bind(this)} /> :
@@ -57,6 +67,12 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
   public changePage(pageContent:string){
     if(pageContent==='Log Out') this.setState({pageContent: 'Login', user: undefined});
     else this.setState({pageContent: pageContent})
+    this.toogleDrower();
+  }
+
+  public goBack(){
+    if(this.state.pageContent==='Friends') this.setState({pageContent: 'Comunidad'});
+    else this.setState({pageContent: 'Main Page'})
   }
 
   public toogleDrower(){
