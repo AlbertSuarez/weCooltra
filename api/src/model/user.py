@@ -10,11 +10,13 @@ class User(Base):
     full_name = db.Column(db.String(100), nullable=False)
     image_url = db.Column(db.String(500), nullable=False)
     points = db.Column(db.Integer, nullable=False)
+    balance = db.Column(db.Float, nullable=False)
 
     def serialize(self):
         return dict(
             id=self.id,
             full_name=self.full_name,
             image_url=self.image_url,
-            points=self.points
+            points=self.points,
+            balance=self.balance
         )
