@@ -19,6 +19,7 @@ import settingsLogo from '../../assets/settings.svg';
 import shoppingLogo from '../../assets/shopping-cart.svg';
 import backLogo from '../../assets/left-arrow.svg';
 import coinsLogo from '../../assets/coins.svg';
+import flagLogo from '../../assets/flag.svg';
 import logOut from '../../assets/logout.svg';
 
 export default class NavigationDrawer extends React.Component<INavigationDrawerProps, INavigationDrawerState> {
@@ -53,6 +54,7 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                                 <p>{this.props.user.balance}€</p>    
                             </div>
                             <div className="puntuation">
+                                <img className="iconNav" src={flagLogo}></img>
                                 <p>{this.props.user.points+"xp"}</p>
                             </div>
                         </div>

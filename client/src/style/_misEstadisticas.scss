@@ -1,99 +1,144 @@
 .misEstadisticas{
-    margin-top: 68px;
-  }
-  
-  .misEstadisticasHeader{
-    height: 230px;
-  }
-  
-  .misEstadisticasImageScooter{
-    position: absolute;
-    width: 190px;
-    height: 135px;
-    left: 155px;
-    top: 127px;
-  
-    background: url("../assets/askoll.png");
-  }
-  
-  .misEstadisticasHeaderElipse{
-    border-radius: 100px;
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 112px;
-    top: 101px;
-  
-    background: rgba(255, 255, 255, 0.84);
-    border: 2px solid #17BAED;
-    box-sizing: border-box;
-  }
-  
-  .misEstadisticasHeaderKilometersNumber{
-    position: absolute;
-    width: 76px;
-    height: 34px;
-    left: 150px;
-    top: 151px;
-  
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 28px;
-    line-height: 34px;
-  
-    color: #000000;
-  }
-  
-  .misEstadisticasHeaderKilometersText{
-    position: absolute;
-    width: 83px;
-    height: 18px;
-    left: 146px;
-    top: 185px;
-  
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 18px;
-  
-    color: #000000;
-  }
-  
-  .misEstadisticasContent{
-    
-  }
-  
-  .misEstadisticasContentFlex{
-    display: flex;
-    justify-content: center;
-  }
-  
-  .misEstadisticasContentPuntosContainer{
-    width: 261px;
-    height: 52px;
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(260.16deg, #A2E982 15.73%, #66D1F0 108.38%);
-    border-radius: 8px;
-  }
-  
-  .misEstadisticasLogros{
-    margin-top: 10px;
-    margin-bottom: 5px;
-  }
-  
-  .misEstadisticasLogrosTitle {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 21px;
-    line-height: 26px;
-  }
-  
-  .misEstadisticasContentFlexLogros{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
+  margin-top: 68px;
+  padding-top: 2.5em;
+}
+
+.misEstadisticas .header p {
+  text-align: center;
+  font-size: 14px;
+  color: gray;
+}
+
+.misEstadisticas .header .puntos {
+  font-size: 20px;
+}
+
+.misEstadisticas .puntos-container{
+  margin: 0 auto;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(260.16deg, #A2E982 15.73%, #66D1F0 108.38%);
+  border-radius: 10px;
+}
+
+.misEstadisticas  .puntos-container p {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0.5em;
+  color: black !important;
+}
+
+.misEstadisticas .scooter-img {
+  margin: 0 auto;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.misEstadisticas .scooter-img img {
+  margin: 0 auto;
+  width: 220px;
+  height: auto;
+  margin-top: 2em;
+  margin-right: 2.5em;
+  float: right;
+  opacity: 0.5;
+}
+
+.misEstadisticas .kilometers {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.misEstadisticas .eclipse-km{
+  border-radius: 100px;
+  margin:  0 auto;
+  width: 150px;
+  height: 150px;
+
+  background: rgba(255, 255, 255, 0.84);
+  border: 2px solid #17BAED;
+  box-sizing: border-box;
+  z-index: 0;
+
+  padding-top: 45px;
+}
+
+.misEstadisticas .eclipse-km p {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.misEstadisticas .numbers-km{
+  width: 76px;
+  height: 34px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+
+  color: #000000;
+}
+
+.misEstadisticas .text-km{
+  width: 83px;
+  height: 18px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+
+  color: #000000;
+}
+
+
+.misEstadisticas .stats {
+  display: flex;
+  padding: 1em;
+}
+
+
+.misEstadisticas .stats .stats-content {
+  margin: 0 auto;
+  display: flex;
+}
+
+.misEstadisticas  .stats-content p {
+  margin: 0;
+  padding-left: 1em;
+}
+
+
+
+
+
+
+.misEstadisticas .degradado {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(115, 222, 65, 0.42) 100%);
+}
+
+.misEstadisticasLogros{
+  padding-top: 2em;
+}
+
+
+.misEstadisticas .title-logros{
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 26px;
+  text-align: center;
+}
+
+.misEstadisticasContentFlexLogros{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

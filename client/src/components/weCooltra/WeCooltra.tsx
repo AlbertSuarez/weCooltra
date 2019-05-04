@@ -12,6 +12,7 @@ import Login from '../login/Login';
 import { IUserModel } from '../../models/IUserModel';
 import Community from '../community/community';
 import FriendsList from '../friendsList/FriendsList';
+import NewFriend from '../newFriend/newFriend';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -56,7 +57,7 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Lista de Amigos" && this.state.user ? <FriendsList 
                                                                               changePage={this.changePage.bind(this)} 
                                                                               user_id={this.state.user.user_id}/> :
-            this.state.pageContent==="Invitar Amigos" ? null : null}
+            this.state.pageContent==="Invitar Amigos" ? <NewFriend/> : null}
           </div>
         </div>
         {this.state.user!=undefined ?

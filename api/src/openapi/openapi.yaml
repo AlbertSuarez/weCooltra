@@ -14,8 +14,12 @@ tags:
     description: endpoint for managing user options.
   - name: trip
     description: endpoint for managing trip options.
-  - name: stadistics
-    description: endpoint for managing user stadistics.
+  - name: achievement
+    description: endpoint for managing achievement options.
+  - name: friend
+    description: endpoint for managing friend options.
+  - name: statistics
+    description: endpoint for managing user statistics.
 
 paths:
   /user:
@@ -94,7 +98,7 @@ paths:
   /trip:
     get:
       tags:
-        - trips
+        - trip
       summary: Retrieve all the trips from a user
       description: Invoke this endpoint to obtain all the trips from a user.
       operationId: src.api.trip.get
@@ -120,13 +124,106 @@ paths:
                 type: string
                 description: Error description.
 
-  /stadistics:
+  /achievement:
     get:
       tags:
-        - user
-      summary: Retrieve user stadistics
-      description: Invoke this endpoint to retrieve specific stadistics of a given user.
-      operationId: src.api.stadistics.get
+        - achievement
+      summary: Retrieve achievement Information
+      description: Invoke this endpoint to retrieve all the achievements of the ones from a user.
+      operationId: src.api.achievement.get
+      parameters:
+        - name: user_id
+          in: query
+          description: Specifies the user to retrieve.
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /friend:
+    get:
+      tags:
+        - friend
+      summary: Retrieve all the friends from a user
+      description: Invoke this endpoint to obtain all the friends from a user.
+      operationId: src.api.friend.get
+      parameters:
+        - name: user_id
+          in: query
+          description: Specifies the user to retrieve.
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+    post:
+      tags:
+        - friend
+      summary: Create a relation between two users making them friends
+      description: Invoke this endpoint to relate a user with another one making them friends.
+      operationId: src.api.friend.post
+      requestBody:
+        required: true
+        description: Body wrapper for the request.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_one:
+                  type: integer
+                  description: User one identifier.
+                user_two:
+                  type: integer
+                  description: User two identifier.
+      responses:
+        200:
+          description: Standard UnstuckOverflow API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /statistics:
+    get:
+      tags:
+        - statistics
+      summary: Retrieve user statistics
+      description: Invoke this endpoint to retrieve specific statistics of a given user.
+      operationId: src.api.statistics.get
       parameters:
         - name: user_id
           in: query
