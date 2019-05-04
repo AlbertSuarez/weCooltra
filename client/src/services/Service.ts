@@ -10,30 +10,32 @@ export default class Service implements IService {
 
             let headers = new Headers();        
 
-            fetch("http://api.openweathermap.org/data/2.5/weather?q=London&APPID=e2b9357594875a9a24508547112f381c",{
+            fetch("http://api.wecooltra.ga/statistics?user_id="+user_id,{
                 headers: headers,
                 method: 'GET',
             })
             .then(response=>{
+                response.json()
+                .then(data=>{
 
-                let logros = new Array<string>();
-                logros.push("Barcelona Expert");
-                logros.push("Madrid Expert");
-                logros.push("A Favor de la Comunidad");
+                    console.log("DATA 1",data);
 
-                let myStatistics: IEstadisticaModel = {
-                    user_id: 100343,
-                    kilometros: 5027,
-                    puntos: 250,
-                    logros: logros
-                }
+                    let logros = new Array<string>();
+                    logros.push("Barcelona Expert");
+                    logros.push("Madrid Expert");
+                    logros.push("A Favor de la Comunidad");
 
-                resolve(myStatistics);
-
-                // response.json()
-                // .then((data)=>{
-                //     resolve(data.base);  
-                // })
+                    let myStatistics: IEstadisticaModel = {
+                        user_id: data.response.user.id,
+                        kilometros: data.response.kilometers,
+                        average: data.response.average,
+                        trips: data.response.trips,
+                        puntos: data.response.user.points,
+                        logros: logros
+                    }
+    
+                    resolve(myStatistics);
+                });
             })
         });
     }

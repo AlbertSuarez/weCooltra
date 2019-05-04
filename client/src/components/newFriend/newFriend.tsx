@@ -3,6 +3,7 @@ import { INewFriendProps } from './INewFriendProps';
 import { INewFriendState } from './INewFriendState';
 import chicaScooter from '../../assets/chica-scooter.png';
 import {Button, TextField } from '@material-ui/core';
+import * as toastr from 'toastr';
 import Service from '../../services/Service';
 
 export default class NewFriend extends React.Component<INewFriendProps, INewFriendState> {
@@ -47,10 +48,11 @@ export default class NewFriend extends React.Component<INewFriendProps, INewFrie
     let service = new Service();
     service.createRelationship(this.props.user_id, +this.state.your_user_id)
     .then((response: string)=>{
-      alert(response);
+      if (response==="OK") toastr.success("Tienes un/a nuev@ amig@!");
+      else toastr.success("Ya eres amig@ de est@ usuari@!");
     })
     .catch((error:any)=>{
-      alert("Este identificador no existe");
+      toastr.error("El usuario introducido no existe... :(");
     })
   }
 
