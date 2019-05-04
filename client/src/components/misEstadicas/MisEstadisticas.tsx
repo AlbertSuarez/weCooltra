@@ -1,7 +1,10 @@
 import React from 'react';
 import { IMisEstadisticasProps } from './IMisEstadisticasProps';
 import { IMisEstadisticasState } from './IMisEstadisticasState';
+import { IEstadisticaModel } from "../../models/IEstadisticaModel";
 import Service from '../../services/Service';
+//ICONS
+import creditLogo from '../../assets/credit.svg';
 
 
 export default class MisEstadisticas extends React.Component<IMisEstadisticasProps, IMisEstadisticasState> {
@@ -10,20 +13,49 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
         super(props);
 
         this.state = {
-            demo: 'undefined'
+            estadistica: undefined
         }
     }
 
     public render(): React.ReactElement<IMisEstadisticasProps> {
         return(
-            <div>{this.state.demo}</div>
+            <div className="misEstadisticas">
+                {this.state.estadistica==undefined ? null : 
+                    <div>
+                        <div className="misEstadisticasHeader">
+                            <ellipse className="misEstadisticasHeaderElipse"></ellipse>
+                            <div className="misEstadisticasHeaderKilometersNumber">{this.state.estadistica.kilometros}</div>
+                            <div className="misEstadisticasHeaderKilometersText">kilometros</div>
+                            <image className="misEstadisticasImageScooter"/>
+                        </div>
+                        <div className="misEstadisticasContent">
+                            <div className="misEstadisticasContentFlex">
+                                <div className="misEstadisticasContentPuntosContainer">
+                                    <div className="misEstadisticasContentPuntos">{this.state.estadistica.puntos + " puntos"}</div>
+                                </div>
+                            </div>
+                            <div className="misEstadisticasLogros">
+                                <div className="misEstadisticasContentFlex">
+                                    <div className="misEstadisticasLogrosTitle">LOGROS</div>  
+                                </div>
+                                <div className="misEstadisticasContentFlexLogros">
+                                    {this.state.estadistica.logros.map((logro:string)=>{
+                                        return (<img className="iconBadge" src={creditLogo}></img>)
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                        {/* <div>{this.state.estadistica.logros}</div> */}
+                    </div>
+                }
+            </div>
         );
     }
 
     public componentDidMount(){
         let service = new Service();
-        service.retriveStatistics(1).then((text: string)=>{
-            this.setState({demo:text});
+        service.retriveStatistics(1).then((text: IEstadisticaModel)=>{
+            this.setState({estadistica:text});
         });
     }
 
