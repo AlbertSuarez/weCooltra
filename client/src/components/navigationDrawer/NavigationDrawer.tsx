@@ -15,13 +15,13 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
         super(props);
         
         this.state ={
-            open: true
+            navigationDrawerOpen: this.props.navigationDrawerOpen
         }
       }
 
     public render(): React.ReactElement<INavigationDrawerProps> {
         return (
-            <Drawer open={this.state.open}>
+            <Drawer open={this.state.navigationDrawerOpen}>
                 <List>
                     {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                         <ListItem button key={text}>
@@ -32,6 +32,10 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                 </List>
             </Drawer>
         );
+    }
+
+    public componentWillReciveProps(newProps: INavigationDrawerProps){
+        this.setState({navigationDrawerOpen: newProps.navigationDrawerOpen});
     }
 
 }
