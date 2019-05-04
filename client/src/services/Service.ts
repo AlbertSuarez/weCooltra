@@ -70,7 +70,7 @@ export default class Service implements IService {
 
     public getFriends(user_id: number): Promise<Array<IUserModel>>{
         return new Promise<Array<IUserModel>>((resolve,reject)=>{
-            fetch("http://api.wecooltra.ga/user?user_id="+user_id,{
+            fetch("http://api.wecooltra.ga/friend?user_id="+user_id,{
                 method: 'GET',
             })
             .then(response=>{
@@ -80,26 +80,21 @@ export default class Service implements IService {
                         reject(data.error.message);
                     }
                     else{
-                        let user: IUserModel = {
-                            user_id: data.response.id,
-                            fullName: data.response.full_name,
-                            image_url: data.response.image_url,
-                            points: data.response.points,
-                            balance: data.response.balance
-                        }
 
                         let arrayFriends = new Array<IUserModel>();
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
-                        arrayFriends.push(user);
+
+                        data.response.forEach((userResponse:any) => {
+                            let user: IUserModel = {
+                                user_id: userResponse.id,
+                                fullName: userResponse.full_name,
+                                image_url: userResponse.image_url,
+                                points: userResponse.points,
+                                balance: userResponse.balance
+                            } 
+
+                            arrayFriends.push(user);
+                        });
+
                         resolve(arrayFriends);   
                     }
                 })
@@ -108,5 +103,11 @@ export default class Service implements IService {
                 reject(error);
             })
         });
+    }
+
+    public createRelationship(my_user_id:number, your_user_id:number):Promise<string>{
+        return new Promise<string>((resolve,response)=>{
+            
+        })
     }
 }
