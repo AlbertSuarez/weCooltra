@@ -7,7 +7,7 @@ from src.model.user import User
 
 
 class Friend(Base):
-    __tablename__ = 'wecooltra_achievement_user'
+    __tablename__ = 'wecooltra_friend'
 
     user_id_one = db.Column(db.Integer, db.ForeignKey('wecooltra_user.id'), primary_key=True)
     user_id_two = db.Column(db.Integer, db.ForeignKey('wecooltra_user.id'), primary_key=True)
