@@ -22,6 +22,14 @@
   border-radius: 10px;
 }
 
+.misEstadisticas  .puntos-container p {
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0.5em;
+  color: black !important;
+}
+
 .misEstadisticas .scooter-img {
   margin: 0 auto;
   position: absolute;
@@ -106,32 +114,27 @@
   padding-left: 1em;
 }
 
-.misEstadisticasContentFlex{
-  display: flex;
-  justify-content: center;
-}
 
 
 
-.puntos-container p {
-  text-align: center;
-  font-weight: 600;
-  font-size: 20px;
-  margin: 0.5em;
-  color: black !important;
+
+
+.misEstadisticas .degradado {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42) 0%, rgba(115, 222, 65, 0.42) 100%);
 }
 
 .misEstadisticasLogros{
-  margin-top: 10px;
-  margin-bottom: 5px;
+  padding-top: 2em;
 }
 
-.misEstadisticasLogrosTitle {
+
+.misEstadisticas .title-logros{
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   font-size: 21px;
   line-height: 26px;
+  text-align: center;
 }
 
 .misEstadisticasContentFlexLogros{

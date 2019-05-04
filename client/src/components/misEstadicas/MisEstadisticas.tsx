@@ -52,11 +52,9 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                                 <p>5km/viaje</p>
                             </div>
                         </div>
-                        <div className="misEstadisticasContent">
+                        <div className="degradado">
                             <div className="misEstadisticasLogros">
-                                <div className="misEstadisticasContentFlex">
-                                    <div className="misEstadisticasLogrosTitle">LOGROS</div>  
-                                </div>
+                                <div className="title-logros">LOGROS</div>  
                                 <div className="misEstadisticasContentFlexLogros">
                                     {this.state.estadistica.logros.map((logro:string)=>{
                                         return (<img className="iconBadge" src={creditLogo}></img>)

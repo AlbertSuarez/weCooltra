@@ -2,12 +2,8 @@
 
 @import '_colors.scss';
 
-.mainDrawer {
-    width: 80%;
-}
-
-.MuiDrawer-paper-3 {
-    width: 80%;
+.mainDrawer > div:nth-child(2) {
+    width: 20em;
 }
 
 /* Profile */
