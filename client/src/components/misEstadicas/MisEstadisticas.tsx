@@ -18,7 +18,10 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
 
         this.state = {
             estadistica: undefined,
-            dialogOpen: true
+            dialogOpen: false,
+            dialogTitle: '',
+            dialogDescription: '',
+            dialogImg: ''
         }
     }
 
@@ -64,7 +67,7 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                                 <div className="title-logros">LOGROS</div>  
                                 <div className="misEstadisticasContentFlexLogros">
                                     {this.state.estadistica.logros.map((logro:string)=>{
-                                        return (<img className="iconBadge" src={creditLogo}></img>)
+                                        return (<img onClick={()=>this.openDialog(logro,logro,logro)} className="iconBadge" src={creditLogo}></img>)
                                     })}
                                 </div>
                             </div>
@@ -72,21 +75,24 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                     </div>
                 }
                 <Dialog open={this.state.dialogOpen} onClose={()=>this.handleClose()}>
-                    <DialogTitle>Set backup account</DialogTitle>
+                    <DialogTitle>{this.state.dialogTitle}</DialogTitle>
                     <div className="misEstadisticasFlex">
-                        <img className="iconBadge" src={creditLogo}></img>
+                        <img className="iconBadge" src={this.state.dialogImg}></img>
                     </div>
                     <div className="descripcionTitle">Descripción</div>
-                    <div className="descripcionContent">ef  wenfwe fjkwebgweo jf wepfhweof jwpf weofjwepofjweifjwepofwe
-                    fwefwef</div>
+                    <div className="descripcionContent">{this.state.dialogDescription}</div>
                 </Dialog>
             </div>
         );
     }
 
-    public handleClose(){
+    private handleClose(){
         this.setState({dialogOpen: false });
     };
+
+    private openDialog(title:string, description:string, imgUrl: string){
+        this.setState({dialogOpen:true, dialogTitle: title, dialogDescription: description, dialogImg:imgUrl});
+    }
 
     public componentDidMount(){
         let service = new Service();
