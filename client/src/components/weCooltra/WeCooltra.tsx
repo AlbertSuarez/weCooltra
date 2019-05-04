@@ -5,6 +5,7 @@ import { IWeCooltraProps } from './IWeCooltraProps';
 import { IWeCooltraState } from './IWeCooltraState';
 import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
 import { tsExternalModuleReference } from '@babel/types';
+import Map from '../map/Map';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -25,7 +26,7 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
 
           </div>
           <div className="pageContent">
-
+            <Map/>
           </div>
         </div>
         <NavigationDrawer 
