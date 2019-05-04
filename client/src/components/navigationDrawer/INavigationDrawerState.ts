@@ -1,3 +1,3 @@
 export interface INavigationDrawerState {
-    open: boolean;
+    navigationDrawerOpen: boolean;
 }
