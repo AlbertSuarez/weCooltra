@@ -38,7 +38,7 @@ export default class Service implements IService {
         });
     }
 
-    public getUser(user_id: string): Promise<IUserModel>{
+    public getUser(user_id: number): Promise<IUserModel>{
         return new Promise<IUserModel>((resolve,reject)=>{
             fetch("http://api.wecooltra.ga/user?user_id="+user_id,{
                 method: 'GET',
@@ -55,9 +55,52 @@ export default class Service implements IService {
                             user_id: data.response.id,
                             fullName: data.response.full_name,
                             image_url: data.response.image_url,
-                            points: data.response.points
+                            points: data.response.points,
+                            balance: data.response.balance
                         }
                         resolve(user);   
+                    }
+                })
+            })
+            .catch(error=>{
+                reject(error);
+            })
+        });
+    }
+
+    public getFriends(user_id: number): Promise<Array<IUserModel>>{
+        return new Promise<Array<IUserModel>>((resolve,reject)=>{
+            fetch("http://api.wecooltra.ga/user?user_id="+user_id,{
+                method: 'GET',
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else{
+                        let user: IUserModel = {
+                            user_id: data.response.id,
+                            fullName: data.response.full_name,
+                            image_url: data.response.image_url,
+                            points: data.response.points,
+                            balance: data.response.balance
+                        }
+
+                        let arrayFriends = new Array<IUserModel>();
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        arrayFriends.push(user);
+                        resolve(arrayFriends);   
                     }
                 })
             })

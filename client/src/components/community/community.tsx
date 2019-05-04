@@ -12,9 +12,14 @@ export default class Community extends React.Component<ICommunityProps, ICommuni
   public render(): React.ReactElement<ICommunityProps> {
     return (
       <div>
-        <button className="myFriends"><img className="iconNav" src={creditLogo}/>Mis Amigos</button>
-        <button className="createEvent"><img className="iconNav" src={creditLogo}/>Crear Evento</button>
+        <button className="myFriends" onClick={()=>this.selectOption("Lista de Amigos")}><img className="iconNav" src={creditLogo}/>Mis Amigos</button>
+        <button className="createEvent" onClick={()=>this.selectOption("Crear Evento")}><img className="iconNav" src={creditLogo}/>Crear Evento</button>
       </div>
     );
   }
+
+  private selectOption(text: string){
+    this.props.changePage(text);
+  }
+
 }
