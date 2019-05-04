@@ -1,11 +1,13 @@
 from flask import jsonify
 
 from src.util import log
+from src.model.user import User
+from src.db.sqlalchemy import db_session
 
 
 def get(user_id):
     try:
-        user = None
+        user = db_session().query(User).filter_by(id=user_id).first()
         if user:
             response = user.serialize()
             return jsonify(error=False, response=response), 200
