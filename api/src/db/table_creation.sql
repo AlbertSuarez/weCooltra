@@ -102,3 +102,24 @@ WITH (
 );
 ALTER TABLE wecooltra_achievement_user
   OWNER TO postgres;
+
+/* FRIEND */
+CREATE TABLE wecooltra_friend
+(
+  user_id_one integer NOT NULL,
+  user_id_two integer NOT NULL,
+  CONSTRAINT wecooltra_friend_pkey PRIMARY KEY (user_id_one, user_id_two),
+  CONSTRAINT wecooltra_friend_user_id_one_fkey FOREIGN KEY (user_id_one)
+        REFERENCES wecooltra_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+  CONSTRAINT wecooltra_friend_user_id_two_fkey FOREIGN KEY (user_id_two)
+        REFERENCES wecooltra_user (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE wecooltra_friend
+  OWNER TO postgres;
