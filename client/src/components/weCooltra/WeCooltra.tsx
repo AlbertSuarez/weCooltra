@@ -7,6 +7,8 @@ import Map from '../map/Map';
 import MisEstadisticas from '../misEstadicas/MisEstadisticas';
 
 import menuLogo from '../../assets/menu.svg';
+import Login from '../login/Login';
+import { IUserModel } from '../../models/IUserModel';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -15,7 +17,8 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
 
     this.state = {
       navigationDrawerOpen: false,
-      pageContent: "Main Page"
+      pageContent: "Login",
+      user: undefined
     }
   }
 
@@ -24,12 +27,15 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
       <div>
         <div>
           <div className="pageHeader">
-            <div onClick={()=>this.toogleDrower()} >
-              <img className="iconNav iconMenu" src={menuLogo}></img>
-            </div>
+            {this.state.user!=undefined ?
+              <div onClick={()=>this.toogleDrower()} >
+                <img className="iconNav iconMenu" src={menuLogo}></img>
+              </div> : null
+            }
           </div>
           <div className="pageContent">
-            {this.state.pageContent==="Main Page" ? <Map/> :
+            {this.state.pageContent==="Login" ? <Login loginUser={this.loginUser.bind(this)} /> :
+            this.state.pageContent==="Main Page" ? <Map/> :
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
             this.state.pageContent==="Mis estadísticas" ? <MisEstadisticas/> : 
@@ -41,7 +47,8 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
         <NavigationDrawer 
           navigationDrawerOpen={this.state.navigationDrawerOpen}
           changePage={this.changePage.bind(this)}
-          toogleDrower={this.toogleDrower.bind(this)}/>
+          toogleDrower={this.toogleDrower.bind(this)}
+          logOutUser={this.logOutUser.bind(this)}/>
       </div>
     );
   }
@@ -51,8 +58,15 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
   }
 
   public toogleDrower(){
-    console.log("toogle 2");
     this.setState({navigationDrawerOpen: !this.state.navigationDrawerOpen});
+  }
+
+  public loginUser(user: IUserModel){
+    this.setState({pageContent: "Main Page", user: user});
+  }
+
+  public logOutUser(){
+    this.setState({user: undefined});
   }
 
 

@@ -73,4 +73,8 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
         this.props.toogleDrower();
     }
 
+    private logOutUser(){
+        this.props.logOutUser();
+    }
+
 }
