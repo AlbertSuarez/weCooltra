@@ -153,6 +153,28 @@ paths:
                 type: string
                 description: Error description.
 
+  /achievement/count:
+    get:
+      tags:
+        - achievement
+      summary: Retrieve achievement count from users
+      description: Invoke this endpoint to retrieve the total amount of users achievements.
+      operationId: src.api.achievement.count
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /friend:
     get:
       tags:
