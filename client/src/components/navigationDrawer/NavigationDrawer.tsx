@@ -21,6 +21,7 @@ import backLogo from '../../assets/left-arrow.svg';
 import coinsLogo from '../../assets/coins.svg';
 import flagLogo from '../../assets/flag.svg';
 import logOut from '../../assets/logout.svg';
+import usersLogo from '../../assets/usersNav.svg';
 
 export default class NavigationDrawer extends React.Component<INavigationDrawerProps, INavigationDrawerState> {
 
@@ -77,7 +78,8 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                         <ListItem onClick={()=>this.selectOption(text)} button key={text}>
                             <ListItemIcon>
                                 <img className="iconNav" src={text==='Mis estadísticas' ? qualityLogo : 
-                                                 text==="Riders" ? scooterLogo :
+                                                 text==="Comunidad" ? usersLogo :
+                                                //  text==="Riders" ? scooterLogo :
                                                  text==='Packs' ? shoppingLogo :
                                                  text==='Invitar Amigos' ? giftLogo : logOut}></img>
                             </ListItemIcon>
@@ -90,7 +92,7 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
     }
 
     private selectOption(text: string){
-        this.props.changePage(text);
+        if(text==="Comunidad" || text==="Mis estadísticas" || text=="Log Out") this.props.changePage(text);
     }
 
     private toogleDrower(){

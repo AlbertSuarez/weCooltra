@@ -45,11 +45,11 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                         <div className="stats">
                             <div className="stats-content">
                             <img className="iconNav" src={abacusLogo}></img>
-                                <p>45 viajes</p>
+                                <p>{this.state.estadistica.trips + " viages"}</p>
                             </div>
                             <div className="stats-content">
                                 <img className="iconNav" src={statsLogo}></img>
-                                <p>5km/viaje</p>
+                                <p>{this.state.estadistica.average+" km/viaje"}</p>
                             </div>
                         </div>
                         <div className="degradado">
@@ -70,8 +70,9 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
 
     public componentDidMount(){
         let service = new Service();
-        service.retriveStatistics(1).then((text: IEstadisticaModel)=>{
-            this.setState({estadistica:text});
+        service.retriveStatistics(this.props.user_id).then((estadisticas: IEstadisticaModel)=>{
+            console.log("ESTADISTICAS",estadisticas);
+            this.setState({estadistica:estadisticas});
         });
     }
 

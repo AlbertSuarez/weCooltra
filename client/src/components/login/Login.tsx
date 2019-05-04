@@ -3,9 +3,8 @@ import { ILoginProps } from "./ILoginProps";
 import { ILoginState } from "./ILoginState";
 import { Card, CardHeader, CardContent, Button, TextField } from '@material-ui/core';
 import Service from '../../services/Service';
+import * as toastr from 'toastr';
 import { IUserModel } from '../../models/IUserModel';
-import { number } from 'prop-types';
-
 
 export default class Login extends React.Component<ILoginProps, ILoginState> {
 
@@ -50,6 +49,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
         let service = new Service();
         service.getUser(+this.state.user_id)
         .then((user: IUserModel)=>{
+            toastr.success("Autenticado correctamente");
             this.props.loginUser(user);
         })
         .catch((error:any)=>{

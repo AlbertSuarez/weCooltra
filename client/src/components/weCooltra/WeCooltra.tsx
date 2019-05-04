@@ -1,5 +1,6 @@
 import React from 'react';
 import '../../style/style.scss';
+import 'toastr/build/toastr.css';
 import { IWeCooltraProps } from './IWeCooltraProps';
 import { IWeCooltraState } from './IWeCooltraState';
 import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
@@ -50,13 +51,13 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Main Page" ? <Map/> :
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
-            this.state.pageContent==="Mis estadísticas" ? <MisEstadisticas/> : 
+            this.state.pageContent==="Mis estadísticas" && this.state.user ? <MisEstadisticas user_id={this.state.user.user_id}/> : 
             this.state.pageContent==="Comunidad" ? <Community changePage={this.changePage.bind(this)}/> : 
             this.state.pageContent==="Packs" ? null :
             this.state.pageContent==="Lista de Amigos" && this.state.user ? <FriendsList 
                                                                               changePage={this.changePage.bind(this)} 
                                                                               user_id={this.state.user.user_id}/> :
-            this.state.pageContent==="Añadir Amigo" ? <NewFriend/> : null}
+            this.state.pageContent==="Añadir Amigo" && this.state.user ? <NewFriend user_id={this.state.user.user_id}/> : null}
           </div>
         </div>
         {this.state.user!=undefined ?
