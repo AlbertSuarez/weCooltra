@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../logo.svg';
-import '../../style/style.css';
+import '../../style/style.scss';
 import { IWeCooltraProps } from './IWeCooltraProps';
 import { IWeCooltraState } from './IWeCooltraState';
 import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
