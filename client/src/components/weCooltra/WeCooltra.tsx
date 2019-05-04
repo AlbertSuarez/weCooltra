@@ -3,6 +3,7 @@ import '../../style/style.scss';
 import { IWeCooltraProps } from './IWeCooltraProps';
 import { IWeCooltraState } from './IWeCooltraState';
 import NavigationDrawer from '../navigationDrawer/NavigationDrawer';
+import Map from '../map/Map';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -23,14 +24,13 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             <div onClick={()=>this.toogleDrower()} className="iconMenu"></div>
           </div>
           <div className="pageContent">
-          {this.state.pageContent==="Main Page" ? null :
-           this.state.pageContent==="Pagos" ? null :
-           this.state.pageContent==="Mis viajes pasados" ?  null :
-           this.state.pageContent==="Mis estadísticas" ? null : 
-           this.state.pageContent==="Riders" ? null : 
-           this.state.pageContent==="Packs" ? null :
-           this.state.pageContent==="Invitar Amigos" ? null : null}
-
+            {this.state.pageContent==="Main Page" ? <Map/> :
+            this.state.pageContent==="Pagos" ? null :
+            this.state.pageContent==="Mis viajes pasados" ?  null :
+            this.state.pageContent==="Mis estadísticas" ? null : 
+            this.state.pageContent==="Riders" ? null : 
+            this.state.pageContent==="Packs" ? null :
+            this.state.pageContent==="Invitar Amigos" ? null : null}
           </div>
         </div>
         <NavigationDrawer 

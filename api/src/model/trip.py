@@ -31,7 +31,7 @@ class Trip(Base):
     last_checkout_attempt_state = db.Column(db.String(100), nullable=False)
     first_odometer_in_meters = db.Column(db.Integer, nullable=False)
     last_odometer_in_meters = db.Column(db.Integer, nullable=False)
-    pause_duration_in_seconds = db.Column(db.Integer, nullable=False)
+    pause_duration_in_seconds = db.Column(db.Float, nullable=False)
     reservation_at = db.Column(db.DateTime(timezone=False), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('wecooltra_user.id'), nullable=False)
