@@ -1,3 +1,8 @@
+
+@import "_colors.scss";
+@import "_icons.scss";
+@import "_navbar.scss"; 
+
 .App {
   text-align: center;
 }
@@ -46,61 +51,3 @@
   box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.21);
 }
 
-.pageContent{
-   
-}
-
-//STYLES
-%icon-class{
-  height: 24px;
-  width: 24px;
-  background-size: cover;
-  background-position-x: center;
-  background-position-y: center;
-}
-
-.iconCredit{
-  @extend %icon-class;
-  background-image:url('../assets/credit.svg');
-}
-
-.iconQuality{
-  @extend %icon-class;
-  background-image:url('../assets/quality.svg');
-}
-
-.iconGift{
-  @extend %icon-class;
-  background-image:url('../assets/gift.svg');
-}
-
-.iconScooter{
-  @extend %icon-class;
-  background-image:url('../assets/scooter.svg');
-}
-
-.iconCart{
-  @extend %icon-class;
-  background-image:url('../assets/shopping-cart.svg');
-}
-
-.iconPacks{
-  @extend %icon-class;
-  background-image:url('../assets/scooter.svg');
-}
-
-.iconMenu{
-  @extend %icon-class;
-  height: 50px;
-  width: 50px;
-  margin: 9px;
-  cursor: pointer;
-  background-image:url('../assets/menu.svg');
-}
-
-.iconBackDrawer{
-  @extend %icon-class;
-  margin: 11px;
-  margin-left: 16px;
-  background-image:url('../assets/left-arrow.svg');
-}

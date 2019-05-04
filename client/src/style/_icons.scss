@@ -1,0 +1,19 @@
+
+@import '_colors.scss';
+
+.iconNav {
+  height: 24px;
+  width: 24px;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.iconMenu{
+  margin: 1em;
+  cursor: pointer;
+}
+
+.iconBackDrawer{
+  margin: 1em;
+}
