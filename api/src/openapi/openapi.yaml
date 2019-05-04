@@ -14,6 +14,10 @@ tags:
     description: endpoint for managing user options.
   - name: trip
     description: endpoint for managing trip options.
+  - name: achievement
+    description: endpoint for managing achievement options.
+  - name: stadistics
+    description: endpoint for managing user stadistics.
 
 paths:
   /user:
@@ -67,13 +71,93 @@ paths:
                 type: string
                 description: Error description.
 
+  /user/random:
+    get:
+      tags:
+        - user
+      summary: Retrieve identifier of a random user
+      description: Invoke this endpoint to retrieve an identifier of a random user.
+      operationId: src.api.user.random
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /trip:
     get:
       tags:
-        - trips
+        - trip
       summary: Retrieve all the trips from a user
       description: Invoke this endpoint to obtain all the trips from a user.
       operationId: src.api.trip.get
+      parameters:
+        - name: user_id
+          in: query
+          description: Specifies the user to retrieve.
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /achievement:
+    get:
+      tags:
+        - achievement
+      summary: Retrieve achievement Information
+      description: Invoke this endpoint to retrieve all the achievements of the ones from a user.
+      operationId: src.api.achievement.get
+      parameters:
+        - name: user_id
+          in: query
+          description: Specifies the user to retrieve.
+          required: false
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+  /stadistics:
+    get:
+      tags:
+        - stadistics
+      summary: Retrieve user stadistics
+      description: Invoke this endpoint to retrieve specific stadistics of a given user.
+      operationId: src.api.stadistics.get
       parameters:
         - name: user_id
           in: query

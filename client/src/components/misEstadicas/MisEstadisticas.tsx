@@ -64,7 +64,6 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                                 </div>
                             </div>
                         </div>
-                        {/* <div>{this.state.estadistica.logros}</div> */}
                     </div>
                 }
             </div>

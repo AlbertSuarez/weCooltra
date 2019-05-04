@@ -28,3 +28,17 @@ def count():
     except Exception as e:
         log.error('Unexpected error in GET/user/count: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
+
+
+def random():
+    try:
+        user = db_session().query(User).order_by(func.random()).first()
+        if user:
+            response = user.id
+            return jsonify(error=False, response=response), 200
+        else:
+            return jsonify(error=True, message='No users.'), 400
+    except Exception as e:
+        log.error('Unexpected error in GET/user/random: {}'.format(e))
+        return jsonify(error=True, message='Unexpected error.'), 400
+
