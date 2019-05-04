@@ -6,7 +6,7 @@ from src.db.sqlalchemy import Base
 from src.model.user import User
 
 
-class AchievementUser(Base):
+class Friend(Base):
     __tablename__ = 'wecooltra_achievement_user'
 
     user_id_one = db.Column(db.Integer, db.ForeignKey('wecooltra_user.id'), primary_key=True)
