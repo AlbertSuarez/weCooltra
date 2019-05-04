@@ -67,6 +67,28 @@ paths:
                 type: string
                 description: Error description.
 
+  /user/random:
+    get:
+      tags:
+        - user
+      summary: Retrieve identifier of a random user
+      description: Invoke this endpoint to retrieve an identifier of a random user.
+      operationId: src.api.user.random
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /trip:
     get:
       tags:
