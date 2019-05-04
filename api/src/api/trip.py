@@ -10,7 +10,7 @@ def get(user_id):
     try:
         user = db_session().query(User).filter_by(id=user_id).first()
         if user:
-            trip_list = db_session().query(Trip).filter_by(id=user_id).all()
+            trip_list = db_session().query(Trip).filter_by(user_id=user_id).all()
             response = [trip.serialize() for trip in trip_list]
             return jsonify(error=False, response=response), 200
         else:

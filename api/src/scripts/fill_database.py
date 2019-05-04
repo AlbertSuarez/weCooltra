@@ -1,6 +1,7 @@
 import csv
 import tqdm
 import argparse
+import multiprocessing.dummy as mp
 
 from src.model.trip import Trip
 from src.util import log, date
@@ -14,6 +15,40 @@ def parse_args():
     parser.add_argument('input_file', type=str)
     parser.add_argument('--system_name', type=str, default='Barcelona')
     return parser.parse_args()
+
+
+def insert_trip(trips_args):
+    t, user_id = trips_args
+    trip = Trip(
+        id=int(t[0]),
+        start_point_lat=float(t[1]),
+        start_point_lon=float(t[2]),
+        end_point_lat=float(t[3]),
+        end_point_lon=float(t[4]),
+        started_at=date.to_string(t[5]),
+        ended_at=date.to_string(t[6]),
+        system_name=t[8],
+        vehicle_external_id=t[9],
+        duration_in_seconds=float(t[10]),
+        billable_duration_in_seconds=int(t[11]),
+        first_checkout_attempt_at=date.to_string(t[12]),
+        first_checkout_attempt_error=None if not t[13] else t[13],
+        first_checkout_attempt_error_details=None if not t[14] else t[14],
+        first_checkout_attempt_id=int(t[15]),
+        first_checkout_attempt_state=t[16],
+        last_checkout_attempt_at=date.to_string(t[17]),
+        last_checkout_attempt_error=None if not t[18] else t[18],
+        last_checkout_attempt_error_details=None if not t[19] else t[19],
+        last_checkout_attempt_id=int(t[20]),
+        last_checkout_attempt_state=t[21],
+        first_odometer_in_meters=int(t[22]),
+        last_odometer_in_meters=int(t[24]),
+        pause_duration_in_seconds=float(t[27]),
+        reservation_at=date.to_string(t[28]),
+        user_id=user_id
+    )
+    db_session().add(trip)
+    db_session().flush()
 
 
 def fill_database():
@@ -41,40 +76,15 @@ def fill_database():
                 try:
                     full_name = '{} {}'.format(random_personality['name']['first'], random_personality['name']['last'])
                     image_url = random_personality['picture']['large']
-                    user = User(id=user_id, full_name=full_name, image_url=image_url, level=1)
+                    user = User(id=user_id, full_name=full_name, image_url=image_url, points=0)
                     db_session().add(user)
                     db_session().flush()
-                    for t in trips:
-                        trip = Trip(
-                            id=int(t[0]),
-                            start_point_lat=float(t[1]),
-                            start_point_lon=float(t[2]),
-                            end_point_lat=float(t[3]),
-                            end_point_lon=float(t[4]),
-                            started_at=date.to_string(t[5]),
-                            ended_at=date.to_string(t[6]),
-                            system_name=t[8],
-                            vehicle_external_id=t[9],
-                            duration_in_seconds=float(t[10]),
-                            billable_duration_in_seconds=int(t[11]),
-                            first_checkout_attempt_at=date.to_string(t[12]),
-                            first_checkout_attempt_error=None if not t[13] else t[13],
-                            first_checkout_attempt_error_details=None if not t[14] else t[14],
-                            first_checkout_attempt_id=int(t[15]),
-                            first_checkout_attempt_state=t[16],
-                            last_checkout_attempt_at=date.to_string(t[17]),
-                            last_checkout_attempt_error=None if not t[18] else t[18],
-                            last_checkout_attempt_error_details=None if not t[19] else t[19],
-                            last_checkout_attempt_id=int(t[20]),
-                            last_checkout_attempt_state=t[21],
-                            first_odometer_in_meters=int(t[22]),
-                            last_odometer_in_meters=int(t[24]),
-                            pause_duration_in_seconds=float(t[27]),
-                            reservation_at=date.to_string(t[28]),
-                            user_id=user_id
-                        )
-                        db_session().add(trip)
-                        db_session().flush()
+
+                    trips_args = [(t, user_id) for t in trips]
+                    with mp.Pool(len(trips_args)) as pool:
+                        # noinspection PyUnusedLocal
+                        thread_result = list(pool.imap(insert_trip, trips_args, 1))
+
                     db_session().commit()
                 except Exception as e:
                     log.warn('Skipping user creation due to: [{}]'.format(e))
