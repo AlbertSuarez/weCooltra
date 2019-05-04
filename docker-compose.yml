@@ -16,7 +16,7 @@ services:
       - 3081:3081
     restart: always
     depends_on:
-      - wecooltra_api_nginx
+      - api_nginx
   api_nginx:
     image: wecooltra_api_nginx
     container_name: wecooltra_api_nginx
