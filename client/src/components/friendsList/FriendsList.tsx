@@ -23,7 +23,7 @@ export default class FriendsList extends React.Component<IFriendsListProps, IFri
             <div className="friendsListContent">
                 {this.state.friends.map((friend: IUserModel)=>{
                     return(
-                        <Card className="friendsCard" onClick={()=>this.selectOption("Perfil de Amigo")}>
+                        <Card className="friendsCard" onClick={()=>this.selectOption("Rider",friend.user_id, friend.fullName)}>
                             <div className="friendsListCardContent">
                                 <div className="cardProfilePhoto">
                                     <img src={friend.image_url}/>
@@ -39,7 +39,7 @@ export default class FriendsList extends React.Component<IFriendsListProps, IFri
                         </Card>
                     );
                 })}
-                <Fab className="friendsFab" onClick={()=>this.selectOption("Añadir Amigo")}>
+                <Fab className="friendsFab" onClick={()=>this.goAddfriend("Añadir Amigo")}>
                     <AddIcon/>
                 </Fab>
             </div>
@@ -53,8 +53,12 @@ export default class FriendsList extends React.Component<IFriendsListProps, IFri
         });
     }
 
-    private selectOption(text: string){
+    private goAddfriend(text:string){
         this.props.changePage(text);
+    }
+
+    private selectOption(text: string, user_id: number, user_name:string){
+        this.props.visitFriendProfile(text, user_id, user_name);
       }
 
 }
