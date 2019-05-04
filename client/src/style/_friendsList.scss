@@ -1,0 +1,58 @@
+.friendsListContent{
+    margin-top: 78px;
+}
+
+.cardProfilePhoto{
+    margin: 5px;
+    width: 20%;
+}
+
+.cardProfilePhoto img{
+    border-radius: 100%;
+    width: 80%;
+}
+
+.cardTextContainer{
+    width: 70%;
+    margin-top: 10px;
+}
+
+.cardRightArrow{
+    width: 20%;
+}
+
+.friendsListCardContent{
+    display: flex;
+}
+
+.friendsCard{
+    cursor: pointer;
+    margin: 5px;
+}
+
+.friendFullName{
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+.friendExperience{
+    font-style: italic;
+    font-size: 12px;
+}
+
+.friendsIcon{
+    margin: 15px;
+    height: 30px;
+    width: 30px;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: center;
+}
+
+.friendsFab{
+    position: fixed !important;
+    bottom: 5px;
+    right: 5px;
+    background: #B4CA2C !important;
+    color: white !important;
+}

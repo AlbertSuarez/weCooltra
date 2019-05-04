@@ -11,6 +11,8 @@ import backLogo from '../../assets/left-arrow.svg';
 import Login from '../login/Login';
 import { IUserModel } from '../../models/IUserModel';
 import Community from '../community/community';
+import FriendsList from '../friendsList/FriendsList';
+import NewFriend from '../newFriend/newFriend';
 
 export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCooltraState> {
 
@@ -50,9 +52,12 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
             this.state.pageContent==="Pagos" ? null :
             this.state.pageContent==="Mis viajes pasados" ?  null :
             this.state.pageContent==="Mis estadísticas" ? <MisEstadisticas/> : 
-            this.state.pageContent==="Comunidad" ? <Community/> : 
+            this.state.pageContent==="Comunidad" ? <Community changePage={this.changePage.bind(this)}/> : 
             this.state.pageContent==="Packs" ? null :
-            this.state.pageContent==="Invitar Amigos" ? null : null}
+            this.state.pageContent==="Lista de Amigos" && this.state.user ? <FriendsList 
+                                                                              changePage={this.changePage.bind(this)} 
+                                                                              user_id={this.state.user.user_id}/> :
+            this.state.pageContent==="Añadir Amigo" ? <NewFriend/> : null}
           </div>
         </div>
         {this.state.user!=undefined ?
@@ -67,12 +72,16 @@ export default class WeCooltra extends React.Component<IWeCooltraProps, IWeCoolt
 
   public changePage(pageContent:string){
     if(pageContent==='Log Out') this.setState({pageContent: 'Login', user: undefined});
-    else this.setState({pageContent: pageContent})
-    this.toogleDrower();
+    else if (pageContent==='Lista de Amigos' || pageContent==='Añadir Amigo') this.setState({pageContent: pageContent});
+    else {
+      this.setState({pageContent: pageContent});
+      this.toogleDrower();
+    }
   }
 
   public goBack(){
-    if(this.state.pageContent==='Friends') this.setState({pageContent: 'Comunidad'});
+    if(this.state.pageContent==='Lista de Amigos') this.setState({pageContent: 'Comunidad'});
+    else if(this.state.pageContent==='Añadir Amigo') this.setState({pageContent: 'Lista de Amigos'});
     else this.setState({pageContent: 'Main Page'})
   }
 

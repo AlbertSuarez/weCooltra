@@ -38,7 +38,7 @@ export default class Service implements IService {
         });
     }
 
-    public getUser(user_id: string): Promise<IUserModel>{
+    public getUser(user_id: number): Promise<IUserModel>{
         return new Promise<IUserModel>((resolve,reject)=>{
             fetch("http://api.wecooltra.ga/user?user_id="+user_id,{
                 method: 'GET',
@@ -55,7 +55,8 @@ export default class Service implements IService {
                             user_id: data.response.id,
                             fullName: data.response.full_name,
                             image_url: data.response.image_url,
-                            points: data.response.points
+                            points: data.response.points,
+                            balance: data.response.balance
                         }
                         resolve(user);   
                     }
@@ -65,5 +66,48 @@ export default class Service implements IService {
                 reject(error);
             })
         });
+    }
+
+    public getFriends(user_id: number): Promise<Array<IUserModel>>{
+        return new Promise<Array<IUserModel>>((resolve,reject)=>{
+            fetch("http://api.wecooltra.ga/friend?user_id="+user_id,{
+                method: 'GET',
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else{
+
+                        let arrayFriends = new Array<IUserModel>();
+
+                        data.response.forEach((userResponse:any) => {
+                            let user: IUserModel = {
+                                user_id: userResponse.id,
+                                fullName: userResponse.full_name,
+                                image_url: userResponse.image_url,
+                                points: userResponse.points,
+                                balance: userResponse.balance
+                            } 
+
+                            arrayFriends.push(user);
+                        });
+
+                        resolve(arrayFriends);   
+                    }
+                })
+            })
+            .catch(error=>{
+                reject(error);
+            })
+        });
+    }
+
+    public createRelationship(my_user_id:number, your_user_id:number):Promise<string>{
+        return new Promise<string>((resolve,response)=>{
+            
+        })
     }
 }

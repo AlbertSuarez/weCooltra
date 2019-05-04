@@ -41,9 +41,6 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                         <img className='iconNav' src={settingsLogo}/>
                     </div>
                 </div>
-
-
-
                 
                 <div className="profile-photo">
                     <img src={this.props.user.image_url}/>
@@ -54,7 +51,7 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                         <div className="info">
                             <div className="money">
                                 <img className="iconNav" src={coinsLogo}></img>
-                                <p>9,18€</p>    
+                                <p>{this.props.user.balance}€</p>    
                             </div>
                             <div className="puntuation">
                                 <img className="iconNav" src={flagLogo}></img>
@@ -93,7 +90,6 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
     }
 
     private selectOption(text: string){
-        console.log("option Selected");
         this.props.changePage(text);
     }
 

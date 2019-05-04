@@ -1,4 +1,5 @@
 from flask import jsonify, request
+from sqlalchemy import func
 
 from src.model.friend import Friend
 from src.util import log
@@ -62,4 +63,15 @@ def post():
 
     except Exception as e:
         log.error('Unexpected error in POST/friend: {}'.format(e))
+        return jsonify(error=True, message='Unexpected error.'), 400
+
+
+def count():
+    try:
+        user_query = db_session().query(Friend)
+        user_query_count = user_query.statement.with_only_columns([func.count()]).order_by(None)
+        user_count = db_session().execute(user_query_count).scalar()
+        return jsonify(error=False, response=user_count/2), 200
+    except Exception as e:
+        log.error('Unexpected error in GET/friend/count: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400

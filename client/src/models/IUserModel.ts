@@ -3,4 +3,5 @@ export interface IUserModel{
     fullName: string;
     image_url: string;
     points: number;
+    balance: number;
 }

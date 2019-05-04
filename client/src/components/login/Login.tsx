@@ -4,6 +4,7 @@ import { ILoginState } from "./ILoginState";
 import { Card, CardHeader, CardContent, Button, TextField } from '@material-ui/core';
 import Service from '../../services/Service';
 import { IUserModel } from '../../models/IUserModel';
+import { number } from 'prop-types';
 
 
 export default class Login extends React.Component<ILoginProps, ILoginState> {
@@ -42,13 +43,12 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     public handleOnChange = (event: any) => {
-        this.setState({user_id:event.target.value});
-        console.log(event.target.value);
+        this.setState({user_id: event.target.value});
     };
 
     public loginUser(){
         let service = new Service();
-        service.getUser(this.state.user_id)
+        service.getUser(+this.state.user_id)
         .then((user: IUserModel)=>{
             this.props.loginUser(user);
         })
