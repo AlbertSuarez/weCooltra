@@ -18,6 +18,7 @@ import scooterLogo from '../../assets/scooter.svg';
 import settingsLogo from '../../assets/settings.svg';
 import shoppingLogo from '../../assets/shopping-cart.svg';
 import backLogo from '../../assets/left-arrow.svg';
+import coinsLogo from '../../assets/coins.svg';
 
 export default class NavigationDrawer extends React.Component<INavigationDrawerProps, INavigationDrawerState> {
 
@@ -30,15 +31,38 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
             <Drawer open={this.props.navigationDrawerOpen}
                     onClose={()=>this.toogleDrower()}
                     className="mainDrawer">
-                <div onClick={()=>this.toogleDrower()} className="iconNav iconBackDrawer">
-                    <img className='iconNav' src={backLogo}/>
+                <div className="first-level">
+                    <div onClick={()=>this.toogleDrower()} className="iconNav iconBackDrawer">
+                        <img className='iconNav' src={backLogo}/>
+                    </div>
+                    <div className="settings">
+                        <img className='iconNav' src={settingsLogo}/>
+                    </div>
                 </div>
 
-                <div className="profile">
+
+
+                
+                <div className="profile-photo">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg"/>
+                </div>
+                <div className="profile-info">
+                    <div className="under_div">
+                        <p className="name">Elena Ruiz</p>
+                        <div className="info">
+                            <div className="money">
+                                <img className="iconNav" src={coinsLogo}></img>
+                                <p>9,18€</p>    
+                            </div>
+                            <div className="puntuation">
+                                <p>503xp</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <List>
-                    {['Pagos', 'Mis viajes pasados'].map((text, index) => (
+                    {['Pagos', 'Mis viajes'].map((text, index) => (
                         <ListItem onClick={()=>this.selectOption(text)} button key={text}>
                             <ListItemIcon>
                                 <img className='iconNav' src={text==='Pagos' ? creditLogo : scooterLogo}></img>
@@ -49,7 +73,7 @@ export default class NavigationDrawer extends React.Component<INavigationDrawerP
                 </List>
                 <Divider />
                 <List>
-                    {['Mis estadísticas', 'Riders','Packs','Invitar Amigos'].map((text, index) => (
+                    {['Mis estadísticas', 'Comunidad','Packs','Invitar Amigos'].map((text, index) => (
                         <ListItem onClick={()=>this.selectOption(text)} button key={text}>
                             <ListItemIcon>
                                 <img className="iconNav" src={text==='Mis estadísticas' ? qualityLogo : 
