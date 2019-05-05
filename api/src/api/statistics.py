@@ -19,7 +19,7 @@ def get(user_id):
                 user_kilometers += (end_kilometers - start_kilometers)
 
             achievement_list = db_session().query(AchievementUser).filter_by(user_id=user_id).all()
-            achievement_list = [achievement_user.achievement for achievement_user in achievement_list]
+            achievement_list = [achievement_user.achievement.serialize() for achievement_user in achievement_list]
 
             response = {
                 'user': user.serialize(),

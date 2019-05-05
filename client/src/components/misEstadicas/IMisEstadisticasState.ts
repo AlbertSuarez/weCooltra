@@ -6,4 +6,5 @@ export interface IMisEstadisticasState {
     dialogTitle: string;
     dialogDescription: string;
     dialogImg: string;
+    dialogPuntos: number;
 }
