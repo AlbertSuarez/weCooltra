@@ -29,6 +29,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
                                 placeholder="Escriba su User ID"
                                 margin="normal"
                                 className="loginTextField"
+                                type="number"
                                 onChange={this.handleOnChange}
                                 />  
                             <Button onClick={()=>this.loginUser()} variant="contained">

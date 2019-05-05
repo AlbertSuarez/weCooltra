@@ -51,14 +51,17 @@ export default class NewFriend extends React.Component<INewFriendProps, INewFrie
   }
 
   private onItemChange = (items: Array<IPersonaProps> | undefined): void => {
-    console.log("amigos",items);
     if(items!=undefined && ((this.state.selectedPersona.length==0 &&  items.length==1) || (items.length==0 && this.state.selectedPersona.length==1))) this.setState({selectedPersona: items});
   }
 
   private onFilterChanged = (filterText: string, selectedItems: IPersonaProps[] | undefined): IPersonaProps[] | Promise<IPersonaProps[]> => {
     if (filterText && filterText.length>=3) {
-        let service = new Service();
-        return service.searchUser(+filterText);
+        let reg = /^\d+$/;
+        if(reg.test(filterText)){
+          let service = new Service();
+          return service.searchUser(+filterText);
+        }
+        else return [];
     }
     else return [];
   }
