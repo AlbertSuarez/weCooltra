@@ -11,7 +11,7 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/AlbertSuarez/weCooltra.svg)](https://GitHub.com/AlbertSuarez/weCooltra/graphs/contributors/)
 [![GitHub license](https://img.shields.io/github/license/AlbertSuarez/weCooltra.svg)](https://github.com/AlbertSuarez/weCooltra/blob/master/LICENSE)
 
-[Demo](http://wecooltra.ga/) | [API](http://api.wecooltra.ga/) | [API Documentation](http://api.wecooltra.ga/ui)
+[Demo](http://wecooltra.ga/) | [API](http://api.wecooltra.ga/) | [API Documentation](http://api.wecooltra.ga/ui) | [Slides](presentation.pdf)
 
 🛵 Rebuilding eCooltra mobile app gamificating it built in eCooltra hackathon
 
