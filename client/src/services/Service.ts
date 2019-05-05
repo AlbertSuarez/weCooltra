@@ -180,7 +180,7 @@ export default class Service implements IService {
         });
     }
 
-    public createRelationship(my_user_id:number, your_user_id:number):Promise<string>{
+    public createRelationship(my_user_id:number, your_user_id:string | undefined):Promise<string>{
 
         console.log("data",my_user_id,your_user_id);
         return new Promise<string>((resolve,reject)=>{

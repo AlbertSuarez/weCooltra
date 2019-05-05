@@ -9,5 +9,5 @@ export default interface IService {
     getUser(user_id:number): Promise<IUserModel>;
     searchUser(prefix_id:number): Promise<Array<IPersonaProps>>;
     getFriends(user_id: number): Promise<Array<IUserModel>>;
-    createRelationship(my_user_id:number, your_user_id:number):Promise<string>;
+    createRelationship(my_user_id:number, your_user_id:string):Promise<string>;
 }
