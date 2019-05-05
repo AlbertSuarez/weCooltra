@@ -6,6 +6,7 @@ export default interface IService {
     retriveStatistics(user_id: number): Promise<IEstadisticaModel>;
     getAllAchivements(): Promise<Array<ILogroModel>>;
     getUser(user_id:number): Promise<IUserModel>;
+    searchUser(prefix_id:number): Promise<Array<IUserModel>>;
     getFriends(user_id: number): Promise<Array<IUserModel>>;
     createRelationship(my_user_id:number, your_user_id:number):Promise<string>;
 }

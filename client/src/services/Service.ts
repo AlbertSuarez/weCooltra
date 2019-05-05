@@ -144,6 +144,43 @@ export default class Service implements IService {
         });
     }
 
+    public searchUser(prefix_id: number): Promise<Array<IUserModel>>{
+        return new Promise<Array<IUserModel>>((resolve,reject)=>{
+            fetch("http://api.wecooltra.ga/user/search?prefix_user="+prefix_id,{
+                method: 'GET',
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else{
+
+                        let arrayFriends = new Array<IUserModel>();
+
+                        data.response.forEach((userResponse:any) => {
+                            let user: IUserModel = {
+                                user_id: userResponse.id,
+                                fullName: userResponse.full_name,
+                                image_url: userResponse.image_url,
+                                points: userResponse.points,
+                                balance: userResponse.balance
+                            } 
+
+                            arrayFriends.push(user);
+                        });
+
+                        resolve(arrayFriends);   
+                    }
+                })
+            })
+            .catch(error=>{
+                reject(error);
+            })
+        });
+    }
+
     public createRelationship(my_user_id:number, your_user_id:number):Promise<string>{
 
         console.log("data",my_user_id,your_user_id);
