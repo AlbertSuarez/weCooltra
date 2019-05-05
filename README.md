@@ -1,4 +1,8 @@
-# weCooltra
+<br>
+<p align="center">
+  <img alt="weCooltra" src="wecooltra.png" width="50%"/>
+</p>
+<br>
 
 [![HitCount](http://hits.dwyl.io/AlbertSuarez/weCooltra.svg)](http://hits.dwyl.io/AlbertSuarez/weCooltra)
 [![GitHub stars](https://img.shields.io/github/stars/AlbertSuarez/weCooltra.svg)](https://GitHub.com/AlbertSuarez/weCooltra/stargazers/)
