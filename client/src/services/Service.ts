@@ -20,16 +20,15 @@ export default class Service implements IService {
                 .then(data=>{
 
                     let logros = new Array<ILogroModel>();
-
-                    let logro: ILogroModel = {
-                        id: 7,
-                        title: 'Barcelona Expert',
-                        description: 'bla bla bla',
-                        puntos: 100
-                    }
-                    logros.push(logro);
-                    logros.push(logro);
-                    logros.push(logro);
+                    data.response.achievements.forEach((badge:any) => {
+                        let logro: ILogroModel = {
+                            id: badge.id,
+                            title: badge.title,
+                            description: badge.description,
+                            puntos: badge.points
+                        }
+                        logros.push(logro);
+                    });
 
                     let myStatistics: IEstadisticaModel = {
                         user_id: data.response.user.id,
@@ -42,6 +41,38 @@ export default class Service implements IService {
     
                     resolve(myStatistics);
                 });
+            })
+        });
+    }
+
+    public getAllAchivements(): Promise<Array<ILogroModel>> {
+        return new Promise<Array<ILogroModel>>((resolve,reject)=>{
+            let headers = new Headers();        
+
+            fetch("http://api.wecooltra.ga/achievement",{
+                headers: headers,
+                method: 'GET',
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+
+                    let logros = new Array<ILogroModel>();
+                    data.response.forEach((badge:any) => {
+                        let logro: ILogroModel = {
+                            id: badge.id,
+                            title: badge.title,
+                            description: badge.description,
+                            puntos: badge.points
+                        }
+                        logros.push(logro);
+                    });
+
+                    resolve(logros);
+                });
+            })
+            .catch(error=>{
+                reject(error);
             })
         });
     }
