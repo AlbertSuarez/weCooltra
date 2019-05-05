@@ -1,21 +1,39 @@
 
-  .newFriendImageScooter{
-    // position: absolute;
+  .addFriend {
+    margin: auto;
+    text-align: center;
+  }
+
+
+  .addFriend .image-scooter{
     height: 200px;
-    left: 25%;
     top: 200px;
-    margin-top: 15px;
-  }
-  .newFriendText{
-    margin:150px 50px 0 50px;
+    margin-top: 2em;
   }
 
-  .newFriendTextField{
-    width: 100%;
-  }
+  .addFriend .description{
+  margin-top: 7em;
+  text-align: center;
 
-  .addFriendButton{
-    background: linear-gradient(260.62deg, #A2E982 15.73%, #66D1F0 108.38%);
-    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 32px;
-  }
+}
+
+ .addFriend .name-textfield {
+  width: 80%;
+  margin-top: 2em;
+}
+
+.addFriend .name-textfield  fieldset {
+  border-radius: 25px;
+}
+
+.addFriend .add-name > button{
+  background: linear-gradient(260.62deg, #A2E982 15.73%, #66D1F0 108.38%);
+  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 32px;
+  font-size: 16px;
+  width: 12em;
+  font-weight: 600;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 1em;
+}
