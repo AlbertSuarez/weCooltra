@@ -3,7 +3,8 @@
 }
 
 .cardProfilePhoto{
-    margin: 5px;
+    margin: 0.5em;
+    margin-left: 1em;
     width: 20%;
 }
 
@@ -23,11 +24,12 @@
 
 .friendsListCardContent{
     display: flex;
+    padding: 3px;
 }
 
 .friendsCard{
     cursor: pointer;
-    margin: 5px;
+    margin: 11px;
 }
 
 .friendFullName{
@@ -36,13 +38,13 @@
 }
 
 .friendExperience{
-    font-style: italic;
     font-size: 12px;
+    font-weight: 700;
 }
 
 .friendsIcon{
-    margin: 15px;
-    height: 30px;
+    margin: 20px;
+    height: 22px;
     width: 30px;
     background-size: cover;
     background-position-x: center;
