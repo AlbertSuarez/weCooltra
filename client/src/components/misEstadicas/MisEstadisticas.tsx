@@ -132,7 +132,7 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                                             if(this.state.estadistica && this.state.mylogros.indexOf(logro.id)==-1){
                                                 console.log("HELOO AMIGO",logro);
                                                 return(
-                                                    <div onClick={()=>this.openDialog(logro.title,logro.description,logro.id,logro.puntos,true)}>
+                                                    <div className="opacity" onClick={()=>this.openDialog(logro.title,logro.description,logro.id,logro.puntos,true)}>
                                                         {this.renderlogo(logro.id, true)}
                                                     </div>
                                                 );

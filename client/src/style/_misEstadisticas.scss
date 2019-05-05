@@ -3,17 +3,6 @@
   padding-top: 2.5em;
 }
 
-.misEstadisticasFlex {
-  display: flex;
-  justify-content: center;
-}
-
-.misEstadisticasFlexText{
-  text-transform: capitalize;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-}
 
 .descripcionTitle{
   margin: 10px;
@@ -150,6 +139,8 @@
 
 .misEstadisticasLogros{
   padding-top: 2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }
 
 
@@ -160,10 +151,35 @@
   font-size: 21px;
   line-height: 26px;
   text-align: center;
+  margin-bottom: 1.5em;
 }
 
 .misEstadisticasContentFlexLogros{
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+.misEstadisticasContentFlexLogros div{
+  padding: 0.5em;
+}
+
+.misEstadisticasContentFlexLogros div img {
+  height: auto;
+}
+
+.misEstadisticasContentFlexLogros .opacity img{
+  opacity: 0.2;
+}
+
+.misEstadisticasFlex {
+  display: flex;
+  justify-content: center;
+}
+
+.misEstadisticasFlexText{
+  text-transform: capitalize;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
 }
