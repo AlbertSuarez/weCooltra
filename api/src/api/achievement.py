@@ -1,4 +1,5 @@
 from flask import jsonify
+from sqlalchemy import func
 
 from src.model.achievement import Achievement
 from src.model.achievement_user import AchievementUser
@@ -23,4 +24,15 @@ def get(user_id=None):
                 return jsonify(error=True, message='No user found with {} as id.'.format(user_id)), 400
     except Exception as e:
         log.error('Unexpected error in GET/achievement: {}'.format(e))
+        return jsonify(error=True, message='Unexpected error.'), 400
+
+
+def count():
+    try:
+        user_query = db_session().query(AchievementUser)
+        user_query_count = user_query.statement.with_only_columns([func.count()]).order_by(None)
+        user_count = db_session().execute(user_query_count).scalar()
+        return jsonify(error=False, response=user_count), 200
+    except Exception as e:
+        log.error('Unexpected error in GET/achievement/count: {}'.format(e))
         return jsonify(error=True, message='Unexpected error.'), 400
