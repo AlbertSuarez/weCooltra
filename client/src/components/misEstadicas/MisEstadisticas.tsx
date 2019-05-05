@@ -144,7 +144,7 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                         </div>
                     </div>
                 }
-                <Dialog open={this.state.dialogOpen} onClose={()=>this.handleClose()}>
+                <Dialog className="dialog" open={this.state.dialogOpen} onClose={()=>this.handleClose()}>
                     <DialogTitle>{this.state.dialogTitle}</DialogTitle>
                     <div className="misEstadisticasFlex">
                         {this.renderlogo(this.state.dialogImg, this.state.isWhite)}

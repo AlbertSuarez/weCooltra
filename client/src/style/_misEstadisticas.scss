@@ -8,6 +8,9 @@
   margin: 10px;
   font-style: normal;
   font-weight: 600;
+  width: 80%;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
 }
 
 .descripcionContent{
@@ -15,6 +18,7 @@
   margin-top: 0px;
   text-align: justify;
   text-justify: inter-word;
+  padding: 0.5em;
 }
 
 .misEstadisticas .header p {
@@ -177,9 +181,16 @@
   justify-content: center;
 }
 
+
+.misEstadisticasFlex .iconBadge {
+  height: 100px;
+  width: auto;
+}
+
 .misEstadisticasFlexText{
   text-transform: capitalize;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
 }
+
