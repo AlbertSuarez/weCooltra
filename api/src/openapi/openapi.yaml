@@ -51,6 +51,35 @@ paths:
                 type: string
                 description: Error description.
 
+  /user/search:
+    get:
+      tags:
+        - user
+      summary: Search for users given a prefix
+      description: Invoke this endpoint to retrieve the results of a search given a prefix.
+      operationId: src.api.user.search
+      parameters:
+        - name: prefix_user
+          in: query
+          description: Specifies the start of the user identifier.
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Standard weCooltra API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
   /user/count:
     get:
       tags:

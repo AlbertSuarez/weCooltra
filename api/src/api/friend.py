@@ -12,7 +12,8 @@ def get(user_id):
         user = db_session().query(User).filter_by(id=user_id).first()
         if user:
             friend_list = db_session().query(Friend).filter_by(user_id_one=user_id).all()
-            response = [friend.user_two.serialize() for friend in friend_list]
+            friend_list = [friend.user_two.serialize() for friend in friend_list]
+            response = sorted(friend_list, key=lambda k: k['points'], reverse=True)
             return jsonify(error=False, response=response), 200
         else:
             return jsonify(error=True, message='No user found with {} as id.'.format(user_id)), 400
