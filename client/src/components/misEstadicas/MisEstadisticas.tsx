@@ -3,6 +3,7 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { IMisEstadisticasProps } from './IMisEstadisticasProps';
 import { IMisEstadisticasState } from './IMisEstadisticasState';
 import { IEstadisticaModel } from "../../models/IEstadisticaModel";
+import { ILogroModel } from "../../models/ILogroModel";
 import Service from '../../services/Service';
 //ICONS
 import creditLogo from '../../assets/credit.svg';
@@ -21,7 +22,8 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
             dialogOpen: false,
             dialogTitle: '',
             dialogDescription: '',
-            dialogImg: ''
+            dialogImg: '',
+            dialogPuntos: 0
         }
     }
 
@@ -66,8 +68,8 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                             <div className="misEstadisticasLogros">
                                 <div className="title-logros">LOGROS</div>  
                                 <div className="misEstadisticasContentFlexLogros">
-                                    {this.state.estadistica.logros.map((logro:string)=>{
-                                        return (<img onClick={()=>this.openDialog(logro,logro,logro)} className="iconBadge" src={creditLogo}></img>)
+                                    {this.state.estadistica.logros.map((logro:ILogroModel)=>{
+                                        return (<img onClick={()=>this.openDialog(logro.title,logro.description,logro.id,logro.puntos)} className="iconBadge" src={creditLogo}></img>)
                                     })}
                                 </div>
                             </div>
@@ -78,6 +80,10 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
                     <DialogTitle>{this.state.dialogTitle}</DialogTitle>
                     <div className="misEstadisticasFlex">
                         <img className="iconBadge" src={this.state.dialogImg}></img>
+                    </div>
+                    <div className="misEstadisticasFlex">
+                        <div className="descripcionTitle">Puntos</div>
+                        <div className="descripcionContent">{this.state.dialogDescription}</div>
                     </div>
                     <div className="descripcionTitle">Descripción</div>
                     <div className="descripcionContent">{this.state.dialogDescription}</div>
@@ -90,8 +96,8 @@ export default class MisEstadisticas extends React.Component<IMisEstadisticasPro
         this.setState({dialogOpen: false });
     };
 
-    private openDialog(title:string, description:string, imgUrl: string){
-        this.setState({dialogOpen:true, dialogTitle: title, dialogDescription: description, dialogImg:imgUrl});
+    private openDialog(title:string, description:string, id: number,puntos: number){
+        this.setState({dialogOpen:true, dialogTitle: title, dialogDescription: description, dialogImg:'../../assets/ciudades/'+id+'.png', dialogPuntos: puntos});
     }
 
     public componentDidMount(){
