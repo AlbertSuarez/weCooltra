@@ -3,6 +3,7 @@ import { string } from "prop-types";
 import { IEstadisticaModel } from "../models/IEstadisticaModel";
 import { IUserModel } from "../models/IUserModel";
 import { ILogroModel } from "../models/ILogroModel";
+import { IPersonaProps } from "office-ui-fabric-react/lib/Persona";
 
 export default class Service implements IService {
 
@@ -144,8 +145,8 @@ export default class Service implements IService {
         });
     }
 
-    public searchUser(prefix_id: number): Promise<Array<IUserModel>>{
-        return new Promise<Array<IUserModel>>((resolve,reject)=>{
+    public searchUser(prefix_id: number): Promise<Array<IPersonaProps>>{
+        return new Promise<Array<IPersonaProps>>((resolve,reject)=>{
             fetch("http://api.wecooltra.ga/user/search?prefix_user="+prefix_id,{
                 method: 'GET',
             })
@@ -157,15 +158,13 @@ export default class Service implements IService {
                     }
                     else{
 
-                        let arrayFriends = new Array<IUserModel>();
+                        let arrayFriends = new Array<IPersonaProps>();
 
                         data.response.forEach((userResponse:any) => {
-                            let user: IUserModel = {
-                                user_id: userResponse.id,
-                                fullName: userResponse.full_name,
-                                image_url: userResponse.image_url,
-                                points: userResponse.points,
-                                balance: userResponse.balance
+                            let user: IPersonaProps = {
+                                secondaryText: userResponse.id,
+                                primaryText: userResponse.full_name.replace(/\b\w/g, function(l:any){ return l.toUpperCase() }),
+                                imageUrl: userResponse.image_url
                             } 
 
                             arrayFriends.push(user);
@@ -219,4 +218,15 @@ export default class Service implements IService {
             })
         })
     }
+
+    // private titleCase(stri:string):string {
+    //     let str = stri.toLowerCase().split(' ');                // will split the string delimited by space into an array of words
+   
+    //     for(var i = 0; i < str.length; i++){               // str.length holds the number of occurrences of the array...
+    //          let str[i] = str[i].split('');                    // splits the array occurrence into an array of letters
+    //          let str[i][0] = str[i][0].toUpperCase();          // converts the first occurrence of the array to uppercase
+    //          str[i] = str[i].join('');                     // converts the array of letters back into a word.
+    //     }
+    //     return str.join(' ');                              //  converts the array of words back to a sentence.
+    // }
 }

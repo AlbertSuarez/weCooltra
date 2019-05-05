@@ -4,6 +4,8 @@ import { INewFriendState } from './INewFriendState';
 import chicaScooter from '../../assets/chica-scooter.png';
 import {Button, TextField } from '@material-ui/core';
 import * as toastr from 'toastr';
+import { NormalPeoplePicker } from 'office-ui-fabric-react/lib/Pickers';
+import { IPersonaProps } from "office-ui-fabric-react/lib/Persona";
 import Service from '../../services/Service';
 
 export default class NewFriend extends React.Component<INewFriendProps, INewFriendState> {
@@ -12,7 +14,8 @@ export default class NewFriend extends React.Component<INewFriendProps, INewFrie
     super(props);
 
     this.state = {
-      your_user_id: ''
+      your_user_id: '',
+      selectedPersona: new Array<IPersonaProps>()
     }
 
   }
@@ -23,6 +26,11 @@ export default class NewFriend extends React.Component<INewFriendProps, INewFrie
         <p className="description">Amplia tu comunidad de riders y comparte tus experiencias</p>
         <img className="image-scooter" src={chicaScooter}/>
         <div className="add-name">
+            <NormalPeoplePicker
+              onResolveSuggestions={this.onFilterChanged.bind(this)}
+              onChange={()=>this.onItemChange}
+              selectedItems={this.state.selectedPersona}
+              className="name-textfield"/>
             <TextField
                 id="friendId"
                 // label="Escriba "
@@ -38,6 +46,18 @@ export default class NewFriend extends React.Component<INewFriendProps, INewFrie
         </div>
       </div>
     );
+  }
+
+  private onItemChange = (items: Array<IPersonaProps>): void => {
+    this.setState({selectedPersona: items});
+  }
+
+  private onFilterChanged = (filterText: string, selectedItems: IPersonaProps[] | undefined): IPersonaProps[] | Promise<IPersonaProps[]> => {
+    if (filterText && filterText.length>=3) {
+        let service = new Service();
+        return service.searchUser(+filterText);
+    }
+    else return [];
   }
 
   public handleOnChange = (event: any) => {
