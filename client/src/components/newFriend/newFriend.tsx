@@ -19,20 +19,20 @@ export default class NewFriend extends React.Component<INewFriendProps, INewFrie
 
   public render(): React.ReactElement<INewFriendProps> {
     return (
-      <div>
-        <p className="newFriendText">Amplia tu comunidad de riders y comparte tus experiencias</p>
-        <img className="newFriendImageScooter" src={chicaScooter}/>
-        <div>
+      <div className="addFriend">
+        <p className="description">Amplia tu comunidad de riders y comparte tus experiencias</p>
+        <img className="image-scooter" src={chicaScooter}/>
+        <div className="add-name">
             <TextField
                 id="friendId"
                 // label="Escriba "
                 placeholder="nombre de usuario"
                 margin="normal"
-                className="newFriendTextField"
+                className="name-textfield"
                 variant="outlined"
                 onChange={this.handleOnChange}
                 />  
-            <Button className="addFriendButton" onClick={()=>this.addFriend()} variant="contained">
+            <Button onClick={()=>this.addFriend()} variant="contained">
                 Submit
             </Button>
         </div>
